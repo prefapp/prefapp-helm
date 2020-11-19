@@ -1,0 +1,71 @@
+{{- define "ph.container.render" -}}
+
+- name: {{ default "container" .name }}
+  image: {{ .image | quote}}
+  {{ include "ph.command.render" . | nindent 2}}
+  {{ include "ph.args.render" . | nindent 2 }}
+  env: {{ include "ph.env.render" . | nindent 2 }}
+
+{{- end -}}
+
+
+{{- define "ph.args.render" -}}
+
+{{- if hasKey . "args" -}}
+args: {{ range $a := .args }}
+  - {{ $a | quote }}
+  {{- end -}}
+{{- end -}}
+{{- end -}}
+
+
+{{- define "ph.command.render" -}}
+
+{{- if hasKey . "command" -}}
+command: {{ range $a := .command }}
+  - {{ $a | quote }}
+  {{- end -}}
+{{- end -}}
+
+{{- end -}}
+
+
+{{- define "ph.env.render" -}}
+
+{{ range $k, $v := (default (dict) .env_literal) }}
+- name: {{ $k }}
+  value: {{ $v | quote}}
+{{ end }}
+{{ include "ph.env_values_configmap.render" . }}
+{{ include "ph.env_values_secret.render" . }}
+{{- end -}}
+
+
+{{- define "ph.env_values_configmap.render" -}}
+
+{{ range $e := (default (dict) .env_values_configmap) }}
+  {{ range $k, $v := $e.values }}
+- name: {{ $k }}
+  valueFrom:
+    configMapKeyRef:
+      name: {{ $e.configmap }}
+      key: {{ $v }}
+  {{ end }}
+{{ end }}
+{{- end -}}
+
+
+
+{{- define "ph.env_values_secret.render" -}}
+
+{{ range $e := (default (dict) .env_values_secret) }}
+  {{ range $k, $v := $e.values }}
+- name: {{ $k }}
+  valueFrom:
+    secretKeyRef:
+      name: {{ $e.secret}}
+      key: {{ $v }}
+  {{ end }}
+{{ end }}
+{{- end -}}
+

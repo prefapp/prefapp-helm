@@ -1,0 +1,26 @@
+{{- define "ph.service.render" -}}
+
+apiVersion: v1
+kind: Service
+
+{{ include "ph.meta.render" . }}
+
+{{- $error := printf "A key ports is needed for service %s" .name }}
+spec:
+  selector: {{ include "ph.service.selector.render" . | nindent 4}}
+  ports:
+  {{ range $p := required $error .ports }}
+  - protocol: TCP
+    targetPort: {{ $p.pod }}
+    port: {{ $p.service }}
+  {{ end -}} 
+{{- end -}}
+
+{{- define "ph.service.selector.render" }}
+
+{{- $error := printf "A selector is needed for service %s" .name -}}
+
+{{ required $error .selector | toYaml }}
+
+{{- end }}
+

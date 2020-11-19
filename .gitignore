@@ -1,0 +1,8 @@
+*.swp
+*.swo
+
+charts/
+
+a.sh
+pod.yaml
+test.yaml
