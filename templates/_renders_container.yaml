@@ -5,9 +5,10 @@
   {{ include "ph.command.render" . | nindent 2}}
   {{ include "ph.args.render" . | nindent 2 }}
   env: {{ include "ph.env.render" . | nindent 2 }}
+  envFrom: {{ include "ph.env_from.render" . | nindent 2 }}
+  ports: {{ include "ph.container.ports.render" .  | nindent 2 }}
 
 {{- end -}}
-
 
 {{- define "ph.args.render" -}}
 
@@ -69,3 +70,24 @@ command: {{ range $a := .command }}
 {{ end }}
 {{- end -}}
 
+
+{{- define "ph.env_from.render" -}}
+
+{{ $env_from := default (dict) .envFrom }}
+
+{{- range $cm := default (list) $env_from.configmaps }}
+- configMapRef:
+    name: {{ $cm }}
+
+{{  end -}}
+
+{{- end -}}
+
+ 
+{{- define "ph.container.ports.render" -}}
+
+{{- range $port := .ports -}}
+- containerPort: {{ $port.pod }}
+{{end -}}
+
+{{- end -}}
