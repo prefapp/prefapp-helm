@@ -81,6 +81,12 @@ command: {{ range $a := .command }}
 
 {{  end -}}
 
+{{- range $sec := default (list) $env_from.secrets }}
+- secretRef:
+    name: {{ $sec }}
+
+{{  end -}}
+
 {{- end -}}
 
  

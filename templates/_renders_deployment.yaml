@@ -21,7 +21,7 @@ spec:
   selector: 
     matchLabels: {{ include "ph.deployment.selector.render" . | nindent 6}}
   template: {{ include "ph.deployment.template.render" . | nindent 4 }}   
-
+  
 {{- end -}}
 
 {{- define "ph.deployment.selector.render" -}}
@@ -36,6 +36,11 @@ spec:
 
 metadata:
   labels: {{ include "ph.deployment.selector.render" . | nindent 4 }}
+  annotations:
+  {{- range $k, $v := (default (dict) .pod_annotations) }}
+    {{ $k }}: {{ $v | quote }}
+  {{- end }}
+
 spec: {{ include "ph.pod.render" . | nindent 2 }}
 
 {{- end -}}
