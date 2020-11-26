@@ -49,4 +49,7 @@ init_containers:
 
 {{- end -}}
 
+
+volumes: {{ include "ph.pod_volumes.render" . | nindent 2 }}
+
 {{- end -}}

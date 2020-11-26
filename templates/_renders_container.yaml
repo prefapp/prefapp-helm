@@ -7,6 +7,7 @@
   env: {{ include "ph.env.render" . | nindent 2 }}
   envFrom: {{ include "ph.env_from.render" . | nindent 2 }}
   ports: {{ include "ph.container.ports.render" .  | nindent 2 }}
+  volumeMounts: {{ include "ph.container.volume_mounts.render" . | nindent 4 }}
 
 {{- end -}}
 
@@ -95,5 +96,15 @@ command: {{ range $a := .command }}
 {{- range $port := .ports -}}
 - containerPort: {{ $port.pod }}
 {{end -}}
+
+{{- end -}}
+
+{{- define "ph.container.volume_mounts.render" -}}
+  
+{{- range $vm := (default (list) .volumeMounts ) -}}
+
+{{ $vm | toYaml }}
+
+{{- end -}}
 
 {{- end -}}
