@@ -1,0 +1,19 @@
+{{- define "ph.pvc.render" -}}
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+
+{{ include "ph.meta.render" . }}
+
+{{ include "ph.pvc.specs.render" . }}
+
+{{- end -}}
+
+{{- define "ph.pvc.specs.render" -}}
+
+spec:
+  storageClassName: {{ required "A storageClassName is needed for the PVC!" .storageClassName}}
+  accessModes: {{ required "accessModes are needed for the PVC!" .accessModes | toYaml | nindent 4}}
+  resources: {{ required "resources are needed for the PVC!" .resources | toYaml | nindent 4 }}
+
+{{- end -}}
