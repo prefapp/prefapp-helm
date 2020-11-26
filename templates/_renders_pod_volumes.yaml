@@ -11,9 +11,13 @@
 
 {{ $name := required "A name is needed for the volume!" .name }}
 
-{{- with .emptyDir -}}
+{{- if .emptyDir -}}
 - name: {{ $name }}
   emptyDir: {}
+
+{{- else -}}
+
+{{ . | toYaml }}
 
 {{- end -}}
 
