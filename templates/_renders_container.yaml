@@ -2,6 +2,7 @@
 
 - name: {{ default "container" .name }}
   image: {{ .image | quote}}
+  imagePullPolicy: {{ default "ifNotPresent"  .imagePullPolicy }}
   {{ include "ph.command.render" . | nindent 2}}
   {{ include "ph.args.render" . | nindent 2 }}
   env: {{ include "ph.env.render" . | nindent 2 }}
@@ -19,7 +20,6 @@ args: {{ range $a := .args }}
   {{- end -}}
 {{- end -}}
 {{- end -}}
-
 
 {{- define "ph.command.render" -}}
 
@@ -103,7 +103,7 @@ command: {{ range $a := .command }}
   
 {{- range $vm := (default (list) .volumeMounts ) -}}
 
-{{ $vm | toYaml }}
+- {{ $vm | toYaml | nindent 2 }}
 
 {{- end -}}
 
