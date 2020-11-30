@@ -1,0 +1,24 @@
+
+{{- define "ph.pod_volumes.render" -}}
+
+{{- range $vol := (default (list) .volumes) -}}
+{{ include "ph.pod_volume.render" $vol }}
+{{ end }}
+
+{{- end -}}
+
+{{- define "ph.pod_volume.render" -}}
+
+{{ $name := required "A name is needed for the volume!" .name }}
+
+{{- if .emptyDir -}}
+- name: {{ $name }}
+  emptyDir: {}
+
+{{- else -}}
+
+- {{ . | toYaml | nindent 2}}
+
+{{ end }}
+
+{{- end -}}
