@@ -34,6 +34,7 @@ imagePullSecrets:
 
 volumes: {{ include "ph.pod_volumes.render" . | nindent 2 }}
 
+
 {{- end -}}
 
 {{/*
@@ -46,7 +47,7 @@ volumes: {{ include "ph.pod_volumes.render" . | nindent 2 }}
 
 {{ $_render_init_containers := (default "ph.container.render" .render_init_container) }}
 
-init_containers:
+initContainers:
   {{- range $c := .init_containers }}
   {{ include $_render_init_containers $c | nindent 2}}
   {{- end -}}

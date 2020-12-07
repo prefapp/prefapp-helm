@@ -10,6 +10,10 @@
   ports: {{ include "ph.container.ports.render" .  | nindent 2 }}
   volumeMounts: {{ include "ph.container.volume_mounts.render" . | nindent 4 }}
 
+{{ include "ph.container_readiness_probe.render" . | indent 2}}
+
+{{ include "ph.container_liveness_probe.render" . | indent 2}}
+
 {{- end -}}
 
 {{- define "ph.args.render" -}}
