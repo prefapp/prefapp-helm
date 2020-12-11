@@ -13,3 +13,16 @@ data:{{-  range $k, $v := .data }}
   {{- end }}
 
 {{- end -}}
+
+{{- define "ph.configmap_literal.render" -}}
+
+{{- $ctx := . }}
+
+kind: ConfigMap
+apiVersion: v1
+
+{{ include "ph.meta.render" . }}
+
+data: {{ .data | toYaml | nindent 2}}
+
+{{- end -}}
