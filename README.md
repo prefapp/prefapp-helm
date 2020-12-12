@@ -136,6 +136,13 @@ spec:
 
 ```
 
+The following keys are overridable by prefapp-helm's renderers:
+
+- containers
+- init_containers
+- volumes
+- volumeMounts
+
 ### The override helper
 
 The "ph.override" method allows a data block to override another by merging both, giving preference to the first one. 
