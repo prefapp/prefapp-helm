@@ -1,0 +1,16 @@
+{{- define "ph.job.render" -}}
+
+kind: Job
+apiVersion: batch/v1
+
+{{ include "ph.meta.render" . }}
+
+{{ $spec := include "ph.pod.render" . | fromYaml }}
+
+{{ $_ := set $spec "restartPolicy" "Never" }}
+
+spec:
+  template:
+    spec: {{ $spec | toYaml | nindent 6 }}
+
+{{- end -}}
