@@ -1,0 +1,14 @@
+{{- define "ph.override" -}}
+{{ $datablock := first . -}}
+{{ $ctx := last . -}}
+{{ $super := include "ph.override.get_super" $datablock -}}
+{{ $a := include $datablock . | fromYaml -}}
+{{ $b := include $super . | fromYaml -}}
+{{ mustMerge $a $b | toYaml}}
+{{- end -}}
+
+{{- define "ph.override.get_super" -}}
+{{ $name := . -}}
+{{ $tr := splitList "." $name -}}
+{{ initial $tr | join "." }}
+{{- end -}}
