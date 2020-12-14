@@ -21,10 +21,7 @@ spec: {{ include "ph.pod.render" . | nindent 2}}
 
 {{ include "ph.init_containers.render" . }}
 
-containers:
-  {{- range $c := .containers }}
-  {{ include "ph.container.render" $c | nindent 2}}
-  {{- end }}
+containers: {{ include "ph.pod.containers.render" . | nindent 2}}
 
 imagePullSecrets: 
   {{ range $v := default (list) .imagePullSecrets }}
@@ -37,18 +34,42 @@ volumes: {{ include "ph.pod_volumes.render" . | nindent 2 }}
 
 {{- end -}}
 
+{{/* Render for containers (loop) */}}
+{{- define "ph.pod.containers.render" -}}
+{{- if hasKey . "containers_dict" -}}
+  {{- range $c := values .containers_dict }}
+{{ include "ph.container.render" $c | nindent 2}}
+  {{- end }}
+{{- else -}}
+  {{- range $c := .containers }}
+{{ include "ph.container.render" $c | nindent 2}}
+  {{- end }}
+{{- end -}}
+{{- end -}}
+
+
 {{/*
   *  Render for pods
   *
 */}}
 {{- define "ph.init_containers.render" -}}
 
-{{- if hasKey . "init_containers" -}}
+{{ $render := false }}
+{{ $init_containers := false }}
 
+{{- if hasKey . "init_containers_dict" -}}
+{{ $init_containers := values .init_containers_dict }}
+{{ $render := true }}
+{{- else if hasKey . "init_containers" -}}
+{{ $init_containers := .init_containers }}
+{{ $render := true }}
+{{- end -}}
+
+{{- if $render -}}
 {{ $_render_init_containers := (default "ph.container.render" .render_init_container) }}
 
 initContainers:
-  {{- range $c := .init_containers }}
+  {{- range $c := $init_containers }}
   {{ include $_render_init_containers $c | nindent 2}}
   {{- end -}}
 
