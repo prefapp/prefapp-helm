@@ -2,8 +2,8 @@
 {{ $datablock := first . -}}
 {{ $ctx := last . -}}
 {{ $super := include "ph.override.get_super" $datablock -}}
-{{ $a := include $datablock . | fromYaml -}}
-{{ $b := include $super . | fromYaml -}}
+{{ $a := include $datablock $ctx | fromYaml -}}
+{{ $b := include $super $ctx | fromYaml -}}
 {{ mustMerge $a $b | toYaml}}
 {{- end -}}
 

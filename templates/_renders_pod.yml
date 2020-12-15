@@ -49,28 +49,23 @@ volumes: {{ include "ph.pod_volumes.render" . | nindent 2 }}
 
 
 {{/*
-  *  Render for pods
+  *  Render for init containers
   *
 */}}
 {{- define "ph.init_containers.render" -}}
 
-{{ $render := false }}
-{{ $init_containers := false }}
-
-{{- if hasKey . "init_containers_dict" -}}
-{{ $init_containers := values .init_containers_dict }}
-{{ $render := true }}
-{{- else if hasKey . "init_containers" -}}
-{{ $init_containers := .init_containers }}
-{{ $render := true }}
-{{- end -}}
-
-{{- if $render -}}
-{{ $_render_init_containers := (default "ph.container.render" .render_init_container) }}
+{{- if hasKey . "init_containers" -}}
 
 initContainers:
-  {{- range $c := $init_containers }}
-  {{ include $_render_init_containers $c | nindent 2}}
+  {{- range $c := .init_containers }}
+  {{ include "ph.container.render" $c | nindent 2}}
+  {{- end -}}
+
+{{- else if hasKey . "init_containers_dict" -}}
+
+initContainers:
+  {{- range $c := values .init_containers_dict }}
+  {{ include "ph.container.render" $c | nindent 2}}
   {{- end -}}
 
 {{- end -}}
