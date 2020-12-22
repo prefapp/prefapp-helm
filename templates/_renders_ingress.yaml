@@ -13,15 +13,35 @@ metadata:
 {{- define "ph.ingress_spec.render" -}}
 
 spec:
+  {{ if hasKey . "tls" }}
+  tls:
+    {{ range $tls := .tls }}
+    hosts: {{ $tls.hosts | toYaml | nindent 6 }}
+
+    secretName: {{ $tls.secretName }}
+    {{ end }}
+  {{- end -}}
   rules: 
-  - http:
-      paths: 
-      {{ range $rule := .rules_path }}
-      - path: {{ $rule.path }}
-        pathType: {{ default "Prefix" $rule.pathType }}
-        backend:
-          serviceName: {{ $rule.service }}
-          servicePort: {{ $rule.port }}
-      {{ end }}
+  {{- if hasKey . "rules" }}
+
+  {{- else }}
+  - host: {{ (default "*" .host) }}
+    http:
+    {{ include "ph.ingress_rules.single.render" . | indent 6}}
+      
+  {{- end }}
+
+{{- end -}}
+
+{{- define "ph.ingress_rules.single.render" }}
+
+paths: 
+{{ range $rule := .rules_path }}
+- path: {{ $rule.path }}
+  pathType: {{ default "Prefix" $rule.pathType }}
+  backend:
+    serviceName: {{ $rule.service }}
+    servicePort: {{ $rule.port }}
+{{ end }}
 
 {{- end -}}
