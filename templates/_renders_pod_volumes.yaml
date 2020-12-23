@@ -1,10 +1,15 @@
 
 {{- define "ph.pod_volumes.render" -}}
 
+{{- if hasKey . "volumes_dict" -}}
+{{- range $vol := values .volumes_dict }}
+{{ include "ph.pod_volume.render" $vol }}
+ {{- end }}
+{{- else -}}
 {{- range $vol := (default (list) .volumes) -}}
 {{ include "ph.pod_volume.render" $vol }}
-{{ end }}
-
+{{- end }}
+{{- end -}}
 {{- end -}}
 
 {{- define "ph.pod_volume.render" -}}
