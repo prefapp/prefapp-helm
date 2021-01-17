@@ -1,0 +1,20 @@
+{{- define "ph.cronjob.render" -}}
+
+apiVersion: batch/v1beta1
+kind: CronJob
+
+{{ include "ph.meta.render" . }}
+
+{{ $spec := include "ph.pod.render" . | fromYaml }}
+
+{{ $_ := set $spec "restartPolicy" "Never" }}
+
+spec:
+  schedule: {{ required "A schedule is needed for a cronjob" .schedule }}
+  suspend: {{ default false .suspend }}
+  jobTemplate:
+    spec:
+      template:
+        spec: {{ $spec | toYaml | nindent 10 }}
+
+{{- end -}}
