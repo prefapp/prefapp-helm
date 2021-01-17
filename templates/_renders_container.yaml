@@ -8,6 +8,11 @@
   env: {{ include "ph.env.render" . | nindent 2 }}
   envFrom: {{ include "ph.env_from.render" . | nindent 2 }}
   ports: {{ include "ph.container.ports.render" .  | nindent 2 }}
+{{ if .workingDir }}
+  workingDir: {{ .workingDir }}
+{{ end }}
+
+
   volumeMounts: {{ include "ph.container.volume_mounts.render" . | nindent 4 }}
   resources: {{ include "ph.container.resources.render" . | nindent 4 }} 
 {{ include "ph.container_readiness_probe.render" . | indent 2}}
