@@ -151,19 +151,21 @@ It accepts two params:
 - The name of the override data block
 - A context
 
-To determine the parent data block name, override uses a simple method: it takes the last section of the name (separated by a dot)
-
+To determine the parent data block name, override uses a simple method: it takes out the last section of the name (separated by a dot), and prefixed with a '@'.  
 
 Therefore:
 
-- pod.data.override => pod.data (parent block)
+- pod.data.@override => pod.data (parent block)
 
-- deployment.foo.my_override => deployment.foo (parent block)
+- deployment.foo.@my_override => deployment.foo (parent block)
 
+This inherintance can be as complex as needed by the charts. 
 
+Thus,
 
+- a.@b.@c => resolves a -> b -> c
 
-
+Those blocks will be merged with a precedence from right to left. 
 
 
 

@@ -2,9 +2,17 @@
 {{ $datablock := first . -}}
 {{ $ctx := last . -}}
 {{ $super := include "ph.override.get_super" $datablock -}}
+
+{{- if regexMatch "@" $super }}
+{{ $b := include $datablock $ctx | fromYaml -}}
+{{ $a := include "ph.override" (list $super $ctx) | fromYaml }}
+{{ mustMerge $a $b | toYaml}}
+{{- else -}}
 {{ $a := include $datablock $ctx | fromYaml -}}
 {{ $b := include $super $ctx | fromYaml -}}
 {{ mustMerge $a $b | toYaml}}
+{{- end }}
+
 {{- end -}}
 
 {{- define "ph.override.get_super" -}}
