@@ -1,3 +1,60 @@
+# Prefapp Helm
+
+Prefapp Helm is a helm microframework for implementing modular charts and umbrella charts. 
+
+## Motivation
+
+Helm is helpful tool for creating and mantaining kubernetes templates and releases. 
+
+The problem with helm is that reusability is really hard to obtain. Somehow, this has been addressed in the [v3](https://helm.sh/blog/helm-3-released/) with the consolidation of two basic features:
+
+* [subcharts](https://helm.sh/docs/chart_template_guide/subcharts_and_globals/).
+* [library charts](https://helm.sh/docs/topics/library_charts/).
+
+By using the library chart feature, it is possible to create a set of fundamentals that avoid repetition in the implementation of helm charts. 
+
+Those fundamentals are the core of the prefapp-helm microframework. 
+
+prefapp-helm is implemented as a library chart to be used on application charts as the basic renders for Kubernetes artifacts. 
+
+It has two more advanced features:
+
+* An overload method
+* A stash.
+
+## Renders
+
+Renders are chart helpers that receive an object and produce a standard k8s artifact. 
+
+For instance, a minimal pod using a prefapp-helm render could be:
+
+```yaml
+
+{{- define "my.pod.data" -}}
+
+name: "my-pod"
+
+containers:
+  - name: app
+    image: debian:10
+
+{{- end -}}
+
+{{ include "ph.pod.render" (include "my.pod.data" . | fromYaml ) }}
+
+```
+
+The result will be a pod conforming to the kubernetes API where the release is going to be installed. 
+
+The render used in the example is the **pod render** that receives an object we create on the data section. 
+
+The last part of the final statement is what creates that object (using the fromYaml method) and passes it to the render. 
+
+This idea of creating data sections that are passed to the renders have important advantages:
+
+* Avoidance of hcd 
+
+
 ## Data blocks
 
 ### Overridable data blocks
