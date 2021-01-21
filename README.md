@@ -52,7 +52,9 @@ The last part of the final statement is what creates that object (using the from
 
 This idea of creating data sections that are passed to the renders have important advantages:
 
-* Avoidance of hcd 
+* Avoidance of hardcoding the artifact structure. 
+* Possibility of embedding block sections of the values directly on the data section. 
+* Ease of debug. 
 
 
 ## Data blocks
