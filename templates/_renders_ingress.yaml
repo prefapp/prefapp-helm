@@ -13,14 +13,14 @@ metadata:
 {{- define "ph.ingress_spec.render" -}}
 
 spec:
-  {{ if hasKey . "tls" }}
+  {{- if hasKey . "tls" }}
   tls:
-    {{ range $tls := .tls }}
+    {{- range $tls := .tls }}
     hosts: {{ $tls.hosts | toYaml | nindent 6 }}
-
+      
     secretName: {{ $tls.secretName }}
     {{ end }}
-  {{- end -}}
+  {{ end }}
   rules: 
   {{- if hasKey . "rules" }}
 
