@@ -15,7 +15,10 @@ metadata:
 spec:
   {{- if hasKey . "tls" }}
   tls:
-    {{- range $tls := .tls }}
+    {{ range $tls := .tls }}
+    {{ if not (kindIs "slice" $tls.hosts) }}
+    {{ fail "[Ingres:render] tls' hosts must be a list" }}
+    {{ end }}
     hosts: {{ $tls.hosts | toYaml | nindent 6 }}
       
     secretName: {{ $tls.secretName }}
