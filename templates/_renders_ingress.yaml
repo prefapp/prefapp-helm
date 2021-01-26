@@ -38,7 +38,7 @@ spec:
 
 {{- define "ph.ingress_rules.single.render" }}
 
-{{ $version := (default "1.16.0" .version) }}
+{{ $version := (default "1.18.0" .version) }}
 
 {{- if semverCompare ">=1.18.0" $version -}}
 {{ include "ph.ingress_rules.single.v18+.render" . }}
