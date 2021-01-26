@@ -23,6 +23,9 @@ spec: {{ include "ph.pod.render" . | nindent 2}}
 
 containers: {{ include "ph.pod.containers.render" . | nindent 2}}
 
+nodeSelector:
+  nodo: {{ .nodeSelector }}
+
 imagePullSecrets: 
   {{ range $v := default (list) .imagePullSecrets }}
   - name: {{ $v }}
