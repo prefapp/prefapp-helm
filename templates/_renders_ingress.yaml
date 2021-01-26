@@ -38,10 +38,36 @@ spec:
 
 {{- define "ph.ingress_rules.single.render" }}
 
+{{ $version := (default "1.16.0" .version) }}
+
+{{- if semverCompare ">=1.18.0" $version -}}
+{{ include "ph.ingress_rules.single.v18+.render" . }}
+{{- else -}}
+{{ include "ph.ingress_rules.single.v16+.render" . }}
+{{- end -}}
+
+{{- end -}}
+
+{{- define "ph.ingress_rules.single.v18+.render" }}
+
 paths: 
 {{ range $rule := .rules_path }}
 - path: {{ $rule.path }}
   pathType: {{ default "Prefix" $rule.pathType }}
+  backend:
+    serviceName: {{ $rule.service }}
+    servicePort: {{ $rule.port }}
+    version: {{ $.version }}
+{{ end }}
+
+{{- end -}}
+
+
+{{- define "ph.ingress_rules.single.v16+.render" }}
+
+paths: 
+{{ range $rule := .rules_path }}
+- path: {{ $rule.path }}
   backend:
     serviceName: {{ $rule.service }}
     servicePort: {{ $rule.port }}
