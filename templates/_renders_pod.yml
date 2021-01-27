@@ -23,8 +23,13 @@ spec: {{ include "ph.pod.render" . | nindent 2}}
 
 containers: {{ include "ph.pod.containers.render" . | nindent 2}}
 
+
 {{ if .affinity }}
 affinity: {{ .affinity | toYaml | nindent 2}}
+{{ end }}
+
+{{ if .nodeSelector }}
+nodeSelector: {{ .nodeSelector | toYaml | nindent 2}}
 {{ end }}
 
 imagePullSecrets: 
@@ -32,9 +37,7 @@ imagePullSecrets:
   - name: {{ $v }}
   {{ end }}
 
-
 volumes: {{ include "ph.pod_volumes.render" . | nindent 2 }}
-
 
 {{- end -}}
 
