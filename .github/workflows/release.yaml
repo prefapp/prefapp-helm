@@ -7,11 +7,11 @@ on:
 jobs:
   pipeline:
     runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v2
-    - name: Pack new chart release
-      run: |
-        helm package . -d docs/
-    - name: Rebuild index
-      run: |
-        cd docs/ && helm repo index . 
+    steps:
+      - uses: actions/checkout@v2
+      - name: Pack new chart release
+        run: |
+          helm package . -d docs/
+      - name: Rebuild index
+        run: |
+          cd docs/ && helm repo index . 
