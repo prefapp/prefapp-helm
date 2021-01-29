@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Calculating branch name
         id: step-branch
-        run: echo "::set-output name=branch::$(echo new-release/${{ github.event.release.tag_name }}"
+        run: echo "::set-output name=branch::$(echo new-release/${{ github.event.release.tag_name }})"
 
       - name: Commit Message
         id: step-commit_message
