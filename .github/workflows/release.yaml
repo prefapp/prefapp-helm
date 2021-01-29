@@ -1,0 +1,17 @@
+name: release-pipeline
+
+on:
+  release:
+    types: [released]
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v2
+    - name: Pack new chart release
+      run: |
+        helm package . -d builds/checkout@v2
+    - name: Rebuild index
+      run: |
+        cd builds && helm repo index . 
