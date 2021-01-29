@@ -20,7 +20,7 @@ jobs:
 
       - name: Commit Message
         id: step-commit_message
-        run: echo "::set-output name=commit_message::$(echo New Chart Release '${{ github.event.release.tag_name }})"
+        run: echo "::set-output name=commit_message::$(echo New Chart Release '${{ github.event.release.tag_name }}')"
 
       - name: Create branch with changes
         run: |
