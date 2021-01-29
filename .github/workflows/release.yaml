@@ -37,7 +37,7 @@ jobs:
         run: |
           prName="Bump release ${{ github.event.release.tag_name }}"
           docker run -v $(pwd):/repo prefapp/prefapp-cicdpy:sleep-test github.pr_auto_merge \
-             token=${GITHUB_TOKEN} \
+             token=${{ secrets.GITHUB_TOKEN }} \
              titulo="${prName}" \
              rama_origen=${{ steps.step-branch.outputs.branch }} \
              repo=${{ env.repositorio }} \
