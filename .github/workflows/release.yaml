@@ -42,4 +42,4 @@ jobs:
              rama_origen=${{ steps.step-branch.outputs.branch }} \
              repo=${{ env.repositorio }} \
              proyecto=${{ env.proyecto }} \
-             reviewers='${{ github.event.client_payload.actor }}'
+             reviewers='${{ github.actor }}'
