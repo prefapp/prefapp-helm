@@ -8,7 +8,7 @@ jobs:
   pipeline:
     env:
       repositorio: prefapp-helm
-      proyecto: prefapp-helm
+      proyecto: prefapp
       git_user: 'github-actions'
       git_email: 'github-actions@github.com'
     runs-on: ubuntu-latest
