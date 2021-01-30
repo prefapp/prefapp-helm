@@ -7,7 +7,7 @@ on:
 jobs:
   pipeline:
     env:
-      repositorio: prefapp-help
+      repositorio: prefapp-helm
       proyecto: prefapp-helm
       git_user: 'github-actions'
       git_email: 'github-actions@github.com'
