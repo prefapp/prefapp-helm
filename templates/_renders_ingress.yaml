@@ -39,9 +39,13 @@ spec:
   rules: 
   {{- if hasKey . "rules" }}
 
-  {{- else }}
-  - host: {{ (default "*" .host) }}
+  {{- else if hasKey . "host" }}
+  - host: {{ .host }}
     http:
+    {{ include "ph.ingress_rules.single.render" . | indent 6}}
+
+  {{ else }}
+  - http:
     {{ include "ph.ingress_rules.single.render" . | indent 6}}
       
   {{- end }}
