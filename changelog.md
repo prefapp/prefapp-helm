@@ -1,7 +1,7 @@
 # Changelog
 
-## [unreleased]
-
+## 0.0.4 [22-02-2021]
+- Fixed bug in the previous version that prevented the use of ingress render without tls.
 
 ## 0.0.3 [5-02-2021]
 
