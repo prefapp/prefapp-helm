@@ -1,0 +1,14 @@
+apiVersion: v2
+name: mocka
+description: Helm chart for testing prefapp-helm
+
+type: application
+
+version: 0.1.0
+
+appVersion: "1.16.0"
+
+dependencies:
+  - name: prefapp-helm
+    version: 0.0.4
+    repository: file://../../

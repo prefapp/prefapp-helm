@@ -1,0 +1,15 @@
+{{- define "mocka.deployment.data" -}}
+
+name: {{ .Release.Name }}
+
+selector: {{ .Values.selector | toYaml | nindent 2 }}
+
+replicas: {{ .Values.replicas }}
+
+containers:
+  - name: app
+    image:  {{ .Values.image }}
+
+{{- end -}}
+
+{{ include "ph.deployment.render" ( include "mocka.deployment.data" . | fromYaml )}}

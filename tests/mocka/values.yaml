@@ -1,0 +1,9 @@
+
+image: nginx
+
+replicas: 10
+
+selector:
+  app: mocka
+  concern: testing
+  project: prefapp-helm
