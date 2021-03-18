@@ -39,6 +39,11 @@ imagePullSecrets:
 
 volumes: {{ include "ph.pod_volumes.render" . | nindent 2 }}
 
+{{ if hasKey . "automountServiceAccountToken" }}
+automountServiceAccountToken: {{ .automountServiceAccountToken }}
+{{ end }}
+
+
 {{- end -}}
 
 {{/* Render for containers (loop) */}}
