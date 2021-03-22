@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.5 [22-04-2021]
+- Add automountServiceAccountToken capabilites [PR](https://github.com/prefapp/prefapp-helm/pull/43).
+
 ## 0.0.4 [22-02-2021]
 - Fixed bug in the previous version that prevented the use of ingress render without tls [PR](https://github.com/prefapp/prefapp-helm/pull/36)
 
