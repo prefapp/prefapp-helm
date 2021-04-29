@@ -14,9 +14,12 @@ spec:
   {{- end }}
   ports:
   {{ range $p := required $error .ports }}
-  - protocol: TCP
+  - protocol: {{ default "TCP" $p.protocol }}
     targetPort: {{ $p.pod }}
     port: {{ $p.service }}
+    {{ with $p.name }}
+    name: {{ . }}
+   {{ end }}
   {{ end -}} 
 {{- end -}}
 
