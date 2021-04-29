@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.6 [29-04-2021]
+- Add named port for containers and services. 
+
 ## 0.0.5 [22-04-2021]
 - Add automountServiceAccountToken capabilites [PR](https://github.com/prefapp/prefapp-helm/pull/43).
 
