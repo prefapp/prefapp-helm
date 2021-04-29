@@ -105,7 +105,9 @@ command: {{ range $a := .command }}
 {{- range $port := .ports -}}
 - containerPort: {{ $port.pod }}
   protocol: {{ default "TCP" $port.protocol }}
-  name: {{ $port.name }}
+  {{ with $port.name }}
+  name: {{ . }}
+  {{ end }}
 {{end -}}
 
 {{- end -}}
