@@ -44,6 +44,16 @@ automountServiceAccountToken: {{ .automountServiceAccountToken }}
 {{ end }}
 
 
+{{/*Lifecycle section*/}}
+{{ with .lifecycle }}
+{{ . | toYaml }}
+{{ end }}
+
+{{ if hasKey . "terminationGracePeriodSeconds" }}
+terminationGracePeriodSeconds: {{ .terminationGracePeriodSeconds }}
+{{ end }}
+
+
 {{- end -}}
 
 {{/* Render for containers (loop) */}}
