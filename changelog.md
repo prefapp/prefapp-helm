@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.7 [05-05-2021]
+- Add lifecycle section for Pod render. 
+- Add terminationGracePeriodSeconds for pod render. 
+
 ## 0.0.6 [29-04-2021]
 - Add named port for containers and services. 
 
