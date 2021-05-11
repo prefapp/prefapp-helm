@@ -2,8 +2,8 @@
 {{- define "ph.pod_volumes.render" -}}
 
 {{- if hasKey . "volumes_dict" -}}
-{{- range $vol := values .volumes_dict }}
-{{ include "ph.pod_volume.render" $vol }}
+{{- range $k := (keys .volumes_dict | sortAlpha ) }}
+{{ include "ph.pod_volume.render" (get $.volumes_dict $k) }}
  {{- end }}
 {{- else -}}
 {{- range $vol := (default (list) .volumes) -}}

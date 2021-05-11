@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.8 [unreleased]
+
+- Fix _dict objects problem [PR](https://github.com/prefapp/prefapp-helm/pull/58).
+
 ## 0.0.7 [05-05-2021]
 - Add lifecycle section for Pod render. 
 - Add terminationGracePeriodSeconds for pod render. 

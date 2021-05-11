@@ -53,8 +53,8 @@ terminationGracePeriodSeconds: {{ .terminationGracePeriodSeconds }}
 {{/* Render for containers (loop) */}}
 {{- define "ph.pod.containers.render" -}}
 {{- if hasKey . "containers_dict" -}}
-  {{- range $c := values .containers_dict }}
-{{ include "ph.container.render" $c | nindent 2}}
+  {{- range $k := ( keys .containers_dict | sortAlpha ) }}
+{{ include "ph.container.render" (get $.containers_dict $k) | nindent 2}}
   {{- end }}
 {{- else -}}
   {{- range $c := .containers }}
@@ -80,10 +80,9 @@ initContainers:
 {{- else if hasKey . "init_containers_dict" -}}
 
 initContainers:
-  {{- range $c := values .init_containers_dict }}
-  {{ include "ph.container.render" $c | nindent 2}}
+  {{- range $k := ( keys .init_containers_dict | sortAlpha ) }}
+  {{ include "ph.container.render" (get $.init_containers_dict $k ) | nindent 2}}
   {{- end -}}
-
 {{- end -}}
 
 {{- end -}}
