@@ -1,6 +1,8 @@
 # Changelog
 
-## 0.0.8 [unreleased]
+## [unreleased]
+
+## 0.0.8 [11-05-2021]
 
 - Fix _dict objects problem [PR](https://github.com/prefapp/prefapp-helm/pull/58).
 
