@@ -120,8 +120,8 @@ command: {{ range $a := .command }}
 {{- define "ph.container.volume_mounts.render" -}}
   
 {{- if hasKey . "volumeMounts_dict" }}
-{{- range $vm := values .volumeMounts_dict }}
-- {{ $vm | toYaml | nindent 2 }}
+{{- range $key := ( keys .volumeMounts_dict | sortAlpha )}}
+- {{ (get $.volumeMounts_dict $key) | toYaml | nindent 2 }}
 {{- end -}}
 {{- else -}}
 {{- range $vm := (default (list) .volumeMounts ) }}
