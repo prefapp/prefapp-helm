@@ -17,7 +17,14 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: {{ required "A name is required for an ingress rule!" .name }}
-  annotations: {{ default (dict) .annotations | toYaml | nindent 4 }}
+  labels: 
+  {{- range $k, $v := .labels }}
+    {{ $k }}: {{ $v | quote }}
+  {{- end }}
+  annotations: 
+  {{- range $k, $v := .annotations }}
+    {{ $k }}: {{ $v | quote }}
+  {{- end }}
 
 {{ include "ph.ingress_spec.render" . }}
 
