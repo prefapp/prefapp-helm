@@ -36,6 +36,9 @@ spec:
 
 metadata:
   labels: {{ include "ph.deployment.selector.render" . | nindent 4 }}
+  {{- range $k, $v := .pod_labels }}
+    {{ $k }}: {{ $v | quote }}
+  {{- end }}
   annotations:
   {{- range $k, $v := (default (dict) .pod_annotations) }}
     {{ $k }}: {{ $v | quote }}
