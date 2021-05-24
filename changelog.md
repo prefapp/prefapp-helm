@@ -2,6 +2,8 @@
 
 ## [unreleased]
 
+## 0.0.9 [24-05-2021]
+
 - Add labels for ingress rules and quotes for ingress annotations' values. [PR](https://github.com/prefapp/prefapp-helm/pull/62).
 - Add pod_labels for deployment render. [PR](https://github.com/prefapp/prefapp-helm/pull/63).  
 
