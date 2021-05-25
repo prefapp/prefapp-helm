@@ -15,6 +15,13 @@ spec:
   jobTemplate:
     spec:
       template:
+        metadata: 
+          {{ with .pod_labels }}
+          labels: 
+          {{- range $k, $v := . }}
+            {{ $k }}: {{ $v | quote }}
+          {{- end }}
+          {{ end }}
         spec: {{ $spec | toYaml | nindent 10 }}
 
 {{- end -}}
