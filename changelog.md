@@ -2,6 +2,8 @@
 
 ## [unreleased]
 
+## 0.0.10 [25-05-2021]
+
 - Add pod_labels for cronjobs. [PR](https://github.com/prefapp/prefapp-helm/pull/66).
 
 ## 0.0.9 [24-05-2021]
