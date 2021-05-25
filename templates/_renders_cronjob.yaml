@@ -11,7 +11,25 @@ kind: CronJob
 
 spec:
   schedule: {{ required "A schedule is needed for a cronjob" .schedule }}
+
   suspend: {{ default false .suspend }}
+  
+  {{ with .successfulJobsHistoryLimit }}
+  successfulJobsHistoryLimit: {{ . }}
+  {{ end }}
+  
+  {{ with .failedJobsHistoryLimit }}
+  failedJobsHistoryLimit: {{ . }}
+  {{ end }}
+
+  {{ with .startingDeadlineSeconds }}
+  startingDeadlineSeconds: {{ . }}
+  {{ end }}
+  
+  {{ with .concurrencyPolicy }}
+  concurrencyPolicy: {{ . }}
+  {{ end }}
+  
   jobTemplate:
     spec:
       template:
