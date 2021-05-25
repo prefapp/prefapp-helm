@@ -14,20 +14,20 @@ spec:
 
   suspend: {{ default false .suspend }}
   
-  {{ with .successfulJobsHistoryLimit }}
-  successfulJobsHistoryLimit: {{ . }}
+  {{ if hasKey . "successfulJobsHistoryLimit" }}
+  successfulJobsHistoryLimit: {{ .successfulJobsHistoryLimit }}
   {{ end }}
   
-  {{ with .failedJobsHistoryLimit }}
-  failedJobsHistoryLimit: {{ . }}
+  {{ if hasKey . "failedJobsHistoryLimit" }}
+  failedJobsHistoryLimit: {{ .failedJobsHistoryLimit }}
   {{ end }}
 
-  {{ with .startingDeadlineSeconds }}
-  startingDeadlineSeconds: {{ . }}
+  {{ if hasKey . "startingDeadlineSeconds" }}
+  startingDeadlineSeconds: {{ .startingDeadlineSeconds }}
   {{ end }}
   
-  {{ with .concurrencyPolicy }}
-  concurrencyPolicy: {{ . }}
+  {{ if hasKey . "concurrencyPolicy" }}
+  concurrencyPolicy: {{ .concurrencyPolicy }}
   {{ end }}
   
   jobTemplate:
