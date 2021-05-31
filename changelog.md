@@ -2,7 +2,7 @@
 
 ## [unreleased]
 
-## 0.0.11 [31-05-2021]
+## 0.0.12 [31-05-2021]
 
 - Add strategy for deployments.  [PR](https://github.com/prefapp/prefapp-helm/pull/75).
 
