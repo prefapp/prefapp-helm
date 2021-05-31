@@ -2,6 +2,10 @@
 
 ## [unreleased]
 
+## 0.0.11 [31-05-2021]
+
+- Add strategy for deployments.  [PR](https://github.com/prefapp/prefapp-helm/pull/75).
+
 ## 0.0.11 [25-05-2021]
 
 - Add specs for cronjobs as k8s v1.21. [PR](https://github.com/prefapp/prefapp-helm/pull/69).
