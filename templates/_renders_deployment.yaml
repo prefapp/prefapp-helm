@@ -21,6 +21,9 @@ spec:
   selector: 
     matchLabels: {{ include "ph.deployment.selector.render" . | nindent 6}}
   template: {{ include "ph.deployment.template.render" . | nindent 4 }}   
+  {{ with .strategy }}
+  strategy: {{ . | toYaml | nindent 4 }}
+  {{ end }}
   
 {{- end -}}
 
