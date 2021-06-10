@@ -5,9 +5,7 @@ kind: CronJob
 
 {{ include "ph.meta.render" . }}
 
-{{ $spec := include "ph.pod.render" . | fromYaml }}
-
-{{ $_ := set $spec "restartPolicy" "Never" }}
+{{ $spec := include "ph.job_spec.render" . | fromYaml }}
 
 spec:
   schedule: {{ required "A schedule is needed for a cronjob" .schedule }}
@@ -30,16 +28,7 @@ spec:
   concurrencyPolicy: {{ .concurrencyPolicy }}
   {{ end }}
   
-  jobTemplate:
-    spec:
-      template:
-        metadata: 
-          {{ with .pod_labels }}
-          labels: 
-          {{- range $k, $v := . }}
-            {{ $k }}: {{ $v | quote }}
-          {{- end }}
-          {{ end }}
-        spec: {{ $spec | toYaml | nindent 10 }}
+  jobTemplate: {{ $spec | toYaml | nindent 4 }}
+      
 
 {{- end -}}
