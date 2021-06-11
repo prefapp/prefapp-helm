@@ -2,6 +2,8 @@
 
 ## [unreleased]
 
+- Establish 1.21 specs for cronjobs and jobs. [PR](https://github.com/prefapp/prefapp-helm/pull/78).
+
 ## 0.0.12 [31-05-2021]
 
 - Add strategy for deployments.  [PR](https://github.com/prefapp/prefapp-helm/pull/75).
