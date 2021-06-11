@@ -17,7 +17,7 @@ apiVersion: batch/v1
 
 spec:
   template: 
-    spec: {{ $spec | toYaml | nindent 8 }}
+    spec: {{ $spec | toYaml | nindent 6 }}
     
   {{ if hasKey . "activeDeadlineSeconds" }}
   activeDeadlineSeconds: {{ .activeDeadlineSeconds }}
