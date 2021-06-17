@@ -1,0 +1,4 @@
+valores: 
+  {{ range $v := (include "ph.values_dict" .Values.lista | fromYaml ) }}
+  - {{ $v }}
+  {{ end }}

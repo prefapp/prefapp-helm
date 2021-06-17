@@ -1,0 +1,23 @@
+pod_annotations:
+  a: 1
+  b: foo
+
+pod_labels:
+
+deployment:
+  selector: 
+    app: a
+    concern: "app"
+
+  image: foo
+
+ports:
+  - name: http
+    pod: 80
+    service: 8080
+
+foo:
+  a:
+    name: a
+    image: b
+

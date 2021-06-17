@@ -1,0 +1,101 @@
+{{- define "ph.ingress.version" }}
+
+{{ $version := (default "1.16.0" .version) }}
+
+{{- if semverCompare ">=1.20.0" $version -}}
+apiVersion: networking.k8s.io/v1
+{{- else }}
+apiVersion: networking.k8s.io/v1beta1
+{{- end -}}
+
+{{- end -}}
+
+
+{{- define "ph.ingress.render" -}}
+
+{{ include "ph.ingress.version" . }}
+kind: Ingress
+metadata:
+  name: {{ required "A name is required for an ingress rule!" .name }}
+  labels: 
+  {{- range $k, $v := .labels }}
+    {{ $k }}: {{ $v | quote }}
+  {{- end }}
+  annotations: 
+  {{- range $k, $v := .annotations }}
+    {{ $k }}: {{ $v | quote }}
+  {{- end }}
+
+{{ include "ph.ingress_spec.render" . }}
+
+{{- end -}}
+
+{{- define "ph.ingress_spec.render" -}}
+
+spec:
+  {{- if hasKey . "tls" }}
+  tls:
+    {{ range $tls := .tls }}
+    {{ if not (kindIs "slice" $tls.hosts) }}
+    {{ fail "[Ingres:render] tls' hosts must be a list" }}
+    {{ end }}
+    - hosts: {{ $tls.hosts | toYaml | nindent 6 }}
+      secretName: {{ $tls.secretName }}
+    {{ end }}
+  {{ end }}
+  rules: 
+  {{- if hasKey . "rules" }}
+
+  {{- else if hasKey . "host" }}
+  - host: {{ .host }}
+    http:
+    {{ include "ph.ingress_rules.single.render" . | indent 6}}
+
+  {{ else }}
+  - http:
+    {{ include "ph.ingress_rules.single.render" . | indent 6}}
+      
+  {{- end }}
+
+{{- end -}}
+
+
+{{- define "ph.ingress_rules.single.render" }}
+
+{{ $version := (default "1.16.0" .version) }}
+
+{{- if semverCompare ">=1.20.0" $version -}}
+{{ include "ph.ingress_rules.single.v20+.render" . }}
+{{- else -}}
+{{ include "ph.ingress_rules.single.v16+.render" . }}
+{{- end -}}
+
+{{- end -}}
+
+{{- define "ph.ingress_rules.single.v20+.render" }}
+
+paths: 
+{{ range $rule := .rules_path }}
+- path: {{ $rule.path }}
+  pathType: {{ default "Prefix" $rule.pathType }}
+  backend:
+    service:
+      name: {{ $rule.service }}
+      port:
+        number: {{ $rule.port }}
+{{ end }}
+
+{{- end -}}
+
+
+{{- define "ph.ingress_rules.single.v16+.render" }}
+
+paths: 
+{{ range $rule := .rules_path }}
+- path: {{ $rule.path }}
+  backend:
+    serviceName: {{ $rule.service }}
+    servicePort: {{ $rule.port }}
+{{ end }}
+
+{{- end -}}

@@ -1,0 +1,86 @@
+---
+# Source: a/templates/deployment_override.yaml
+kind: Deployment
+apiVersion: apps/v1
+
+metadata:
+  name: foo
+  labels:
+  annotations:
+
+spec:
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: foo
+      concern: test
+  template: 
+    metadata:
+      labels: 
+        app: foo
+        concern: test
+      annotations:
+    
+    spec: 
+      
+      
+      containers: 
+        
+        
+          - name: app
+            image: "foo"
+            imagePullPolicy: IfNotPresent
+            
+            command: 
+              - "tail"
+              - "-f"
+              - "/dev/null"
+            
+            
+            env: 
+            
+            
+            
+            envFrom: 
+            
+            ports: 
+            
+          
+          
+          
+          
+            lifecycle:  
+              preStop:
+                exec:
+                  command:
+                  - /bin/sh
+                  - /root/cmd-stop_workers.sh
+          
+          
+          
+            volumeMounts: 
+              
+            resources: 
+              requests: 
+                  {}
+              limits: 
+                  {} 
+            
+          
+            
+      
+      
+      
+      
+      
+      
+      imagePullSecrets: 
+        
+      
+      volumes: 
+        
+      
+      
+      
+      
+      terminationGracePeriodSeconds: 0

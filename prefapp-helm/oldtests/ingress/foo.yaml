@@ -1,0 +1,35 @@
+---
+# Source: ingress/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: RELEASE-NAME
+  annotations: 
+    {}
+
+spec:
+  tls:
+    
+    
+    - hosts: 
+      - a.com
+      - b.com
+      secretName: foo
+    
+  
+  rules:
+  - host: foo.com
+    http:
+          
+      
+      
+      
+      paths: 
+      
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: RELEASE-NAME-mailer
+            port:
+              number: 80

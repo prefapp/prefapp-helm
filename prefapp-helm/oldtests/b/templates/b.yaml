@@ -1,0 +1,1 @@
+lista: {{ include "ph.values_dict" .Values.lista | toYaml }}

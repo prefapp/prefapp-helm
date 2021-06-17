@@ -1,0 +1,14 @@
+{{- define "ph.meta.render" -}}
+
+metadata:
+  name: {{ required "A parameter name is required!" .name }}
+  labels:
+  {{- range $k, $v := (default (dict) .labels) }}
+    {{ $k }}: {{ $v | quote }}
+  {{- end }}
+  annotations:
+  {{- range $k, $v := (default (dict) .annotations) }}
+    {{ $k }}: {{ $v | quote }}
+  {{- end -}}
+
+{{- end -}}

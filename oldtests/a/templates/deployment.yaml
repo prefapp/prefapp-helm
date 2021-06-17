@@ -1,0 +1,86 @@
+{{- define "a.deployment.data" }}
+
+name: a-{{.Release.Name }}
+
+selector: {{ .Values.deployment.selector | toYaml | nindent 2 }}
+
+pod_labels: {{ .Values.pod_labels | toYaml | nindent 2 }}
+
+pod_annotations: {{ .Values.pod_annotations | toYaml | nindent 2}}
+
+init_containers: {{ include "a.deployment.init.data" . | nindent 2 }}
+
+automountServiceAccountToken: false
+
+strategy:
+  rollingUpdate:
+    maxSurge: 25%
+    maxUnavailable: 25%
+  type: RollingUpdate
+
+containers:
+  - name: a
+    image: foo
+    env_literal: 
+      a: 1
+      b: 2
+    env_values_secret:
+      - secret: foo
+        values:
+          a: A
+          b: B
+    envFrom:
+      secrets:
+        - foo
+    volumeMounts_dict:
+      foo:
+        name: foo
+        mountPath: /mtn
+      a2:
+        name: "a2"
+        mountPath: /mtn
+      foo2:
+        name: "foo2"
+        mountPath: /mtn
+      a0:
+        name: "a0"
+        mountPath: /mtn
+
+    livenessProbe:
+      httpGet:
+        path: /healthz
+        port: 8080
+    
+    readinessProbe:
+      httpGet:
+        path: /ready
+        port: 8080
+    
+volumes_dict:
+  foo:
+    emptyDir: true
+    name: "foo"
+  a2:
+    emptyDir: true
+    name: "a2"
+  foo2:
+    emptyDir: true
+    name: "foo2"
+  a0:
+    emptyDir: true
+    name: "a0"
+  a1:
+    emptyDir: true
+    name: "a1"
+{{- end -}}
+
+{{- define "a.deployment.init.data" }}
+
+- name: init-a
+  image: foo
+  command:
+  - a 
+  - b
+{{- end -}}
+
+{{ include "ph.deployment.render" (include "a.deployment.data" . | fromYaml ) }}

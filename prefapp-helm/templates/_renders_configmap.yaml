@@ -1,0 +1,28 @@
+{{- define "ph.configmap.render" -}}
+
+{{- $ctx := . }}
+
+kind: ConfigMap
+apiVersion: v1
+
+{{ include "ph.meta.render" . }}
+
+data:{{-  range $k, $v := .data }}
+  {{- $_ := printf "Configmap (%s) key %s lacks value"  $ctx.name $k }}
+  {{ $k }}: {{ required $_ $v | quote }}
+  {{- end }}
+
+{{- end -}}
+
+{{- define "ph.configmap_literal.render" -}}
+
+{{- $ctx := . }}
+
+kind: ConfigMap
+apiVersion: v1
+
+{{ include "ph.meta.render" . }}
+
+data: {{ .data | toYaml | nindent 2}}
+
+{{- end -}}
