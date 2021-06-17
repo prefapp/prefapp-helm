@@ -1,3 +1,0 @@
-{{ include "ph.stash.init" . }}
-
-a: {{ ._stash_ }}

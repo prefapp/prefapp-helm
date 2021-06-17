@@ -2,6 +2,28 @@
 
 Prefapp Helm is a helm microframework for implementing modular charts and umbrella charts. 
 
+## To install
+
+Add the prefapp-helm repo to your helm repos. 
+
+```sh
+helm repo add prefapp-helm https://prefapp.github.io/prefapp-helm
+helm repo update
+```
+
+Then, include in your charts as a dependency:
+
+```yaml
+
+# Chart.yaml
+
+dependencies:
+  # ... your other dependencies
+  - name: prefapp-helm
+    version: <your desired version>
+    repository: https://prefapp.github.io/prefapp-helm
+
+
 ## Motivation
 
 Helm is helpful tool for creating and mantaining kubernetes templates and releases. 
