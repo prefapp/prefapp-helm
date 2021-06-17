@@ -22,7 +22,7 @@ dependencies:
   - name: prefapp-helm
     version: <your desired version>
     repository: https://prefapp.github.io/prefapp-helm
-
+```
 
 ## Motivation
 
