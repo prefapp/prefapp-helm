@@ -1,0 +1,35 @@
+{{- define "b.deployment.data" -}}
+name: a-{{.Release.Name }}
+
+selector: {{ .Values.deployment.selector | toYaml | nindent 2 }}
+
+pod_annotations: {{ .Values.pod_annotations | toYaml | nindent 2}}
+
+containers:
+  - name: a
+    image: foo
+    env_literal: 
+      a: 1
+      b: 2
+    env_values_secret:
+      - secret: foo
+        values:
+          a: A
+          b: B
+    envFrom:
+      secrets:
+        - foo
+    volumeMounts:
+      - name: "foo"
+        mountPath: /mnt
+
+      - name: "foo"
+        mountPath: /mnt
+
+volumes:
+  - emptyDir: true
+    name: "foo"
+
+{{- end -}}
+
+{{ include "ph.deployment.render" (include "b.deployment.data" . | fromYaml ) }}

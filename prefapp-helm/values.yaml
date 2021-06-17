@@ -1,0 +1,10 @@
+env_literal:
+  a: A
+  b: A
+
+configmaps:
+  a:
+    - a
+    - b
+    - c
+

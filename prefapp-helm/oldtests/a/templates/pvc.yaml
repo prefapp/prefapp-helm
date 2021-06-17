@@ -1,0 +1,18 @@
+{{- define "a.pvc.data" }}
+
+name: "foo"
+
+labels:
+  a: 1
+  b: 2
+
+storageClassName: generic
+accessModes: 
+  - ReadWriteOnce
+resources:
+  requests:
+    storage: 1Gi
+
+{{- end -}}
+
+{{ include "ph.pvc.render" (include "a.pvc.data" . | fromYaml )}}

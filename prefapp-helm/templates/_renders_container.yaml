@@ -1,0 +1,143 @@
+{{- define "ph.container.render" -}}
+
+- name: {{ default "container" .name }}
+  image: {{ .image | quote}}
+  imagePullPolicy: {{ default "IfNotPresent"  .imagePullPolicy }}
+  {{ include "ph.command.render" . | nindent 2}}
+  {{ include "ph.args.render" . | nindent 2 }}
+  env: {{ include "ph.env.render" . | nindent 2 }}
+  envFrom: {{ include "ph.env_from.render" . | nindent 2 }}
+  ports: {{ include "ph.container.ports.render" .  | nindent 2 }}
+{{ if .workingDir }}
+  workingDir: {{ .workingDir }}
+{{ end }}
+
+{{/*Lifecycle section*/}}
+{{ with .lifecycle }}
+  lifecycle:  {{ . | toYaml | nindent 4 }}
+{{ end }}
+
+
+  volumeMounts: {{ include "ph.container.volume_mounts.render" . | nindent 4 }}
+  resources: {{ include "ph.container.resources.render" . | nindent 4 }} 
+{{ include "ph.container_readiness_probe.render" . | indent 2}}
+
+{{ include "ph.container_liveness_probe.render" . | indent 2}}
+
+{{- end -}}
+
+{{- define "ph.args.render" -}}
+
+{{- if hasKey . "args" -}}
+args: {{ range $a := .args }}
+  - {{ $a | quote }}
+  {{- end -}}
+{{- end -}}
+{{- end -}}
+
+{{- define "ph.command.render" -}}
+
+{{- if hasKey . "command" -}}
+command: {{ range $a := .command }}
+  - {{ $a | quote }}
+  {{- end -}}
+{{- end -}}
+
+{{- end -}}
+
+
+{{- define "ph.env.render" -}}
+
+{{ range $k, $v := (default (dict) .env_literal) }}
+- name: {{ $k }}
+  value: {{ $v | quote}}
+{{ end }}
+{{ include "ph.env_values_configmap.render" . }}
+{{ include "ph.env_values_secret.render" . }}
+{{- end -}}
+
+
+{{- define "ph.env_values_configmap.render" -}}
+
+{{ range $e := (default (dict) .env_values_configmap) }}
+  {{ range $k, $v := $e.values }}
+- name: {{ $k }}
+  valueFrom:
+    configMapKeyRef:
+      name: {{ $e.configmap }}
+      key: {{ $v }}
+  {{ end }}
+{{ end }}
+{{- end -}}
+
+
+
+{{- define "ph.env_values_secret.render" -}}
+
+{{ range $e := (default (dict) .env_values_secret) }}
+  {{ range $k, $v := $e.values }}
+- name: {{ $k }}
+  valueFrom:
+    secretKeyRef:
+      name: {{ $e.secret}}
+      key: {{ $v }}
+  {{ end }}
+{{ end }}
+{{- end -}}
+
+
+{{- define "ph.env_from.render" -}}
+
+{{ $env_from := default (dict) .envFrom }}
+
+{{- range $cm := default (list) $env_from.configmaps }}
+- configMapRef:
+    name: {{ $cm }}
+
+{{  end -}}
+
+{{- range $sec := default (list) $env_from.secrets }}
+- secretRef:
+    name: {{ $sec }}
+
+{{  end -}}
+
+{{- end -}}
+
+ 
+{{- define "ph.container.ports.render" -}}
+
+{{- range $port := .ports -}}
+- containerPort: {{ $port.pod }}
+  protocol: {{ default "TCP" $port.protocol }}
+  {{ with $port.name }}
+  name: {{ . }}
+  {{ end }}
+{{end -}}
+
+{{- end -}}
+
+{{- define "ph.container.volume_mounts.render" -}}
+  
+{{- if hasKey . "volumeMounts_dict" }}
+{{- range $key := ( keys .volumeMounts_dict | sortAlpha )}}
+- {{ (get $.volumeMounts_dict $key) | toYaml | nindent 2 }}
+{{- end -}}
+{{- else -}}
+{{- range $vm := (default (list) .volumeMounts ) }}
+- {{ $vm | toYaml | nindent 2 }}
+{{- end -}}
+{{- end -}}
+{{- end -}}
+
+
+
+
+{{- define "ph.container.resources.render" -}}
+
+{{- $resources := (default (dict) .resources ) -}}
+
+requests: {{ default dict $resources.requests | toYaml | nindent 4 }}
+limits: {{  default dict $resources.limits | toYaml | nindent 4 }}
+
+{{- end -}}

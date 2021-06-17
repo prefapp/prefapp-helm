@@ -1,0 +1,6 @@
+dependencies:
+- name: prefapp-helm
+  repository: file://../../
+  version: 0.0.12
+digest: sha256:f86ec5a6825c2c368baab197646ea4022024cb1ffeb24012f986cdd12e6bc15c
+generated: "2021-06-10T10:16:09.025356359Z"

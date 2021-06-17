@@ -1,0 +1,21 @@
+{{- define "ingress.data" -}}
+
+version: {{ include "ph.k8s.version" . }}
+
+name: {{ .Release.Name }}
+
+tls:
+  - hosts: ["a.com", "b.com"]
+    secretName: foo
+
+host: "foo.com"
+
+rules_path:
+  - path: /
+    service: {{.Release.Name}}-mailer
+    port: 80
+
+
+{{- end -}}
+
+{{ include "ph.ingress.render" (include "ingress.data" . | fromYaml) }}

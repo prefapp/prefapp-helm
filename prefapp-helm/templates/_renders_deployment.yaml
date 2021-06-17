@@ -1,0 +1,52 @@
+{{- define "ph.deployment.artifact" -}}
+
+{{- end -}}
+
+{{- define "ph.deployment.render" -}}
+
+kind: Deployment
+apiVersion: apps/v1
+
+{{ include "ph.meta.render" . }}
+
+{{ include "ph.deployment.spec.render" . }}
+
+{{- end -}}
+
+
+{{- define "ph.deployment.spec.render" -}}
+
+spec:
+  replicas: {{ (default 1 .replicas) }}
+  selector: 
+    matchLabels: {{ include "ph.deployment.selector.render" . | nindent 6}}
+  template: {{ include "ph.deployment.template.render" . | nindent 4 }}   
+  {{ with .strategy }}
+  strategy: {{ . | toYaml | nindent 4 }}
+  {{ end }}
+  
+{{- end -}}
+
+{{- define "ph.deployment.selector.render" -}}
+
+{{ required "A field 'selector' is required" .selector | toYaml }}
+
+{{- end -}}
+
+
+
+{{- define "ph.deployment.template.render" -}}
+
+metadata:
+  labels: {{ include "ph.deployment.selector.render" . | nindent 4 }}
+  {{- range $k, $v := .pod_labels }}
+    {{ $k }}: {{ $v | quote }}
+  {{- end }}
+  annotations:
+  {{- range $k, $v := (default (dict) .pod_annotations) }}
+    {{ $k }}: {{ $v | quote }}
+  {{- end }}
+
+spec: {{ include "ph.pod.render" . | nindent 2 }}
+
+{{- end -}}

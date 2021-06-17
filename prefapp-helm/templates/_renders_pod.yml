@@ -1,0 +1,89 @@
+{{/*
+  *  Standalone Pod Render
+  *
+*/}}
+{{- define "ph.pod.artifact" -}}
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ .name }}
+spec: {{ include "ph.pod.render" . | nindent 2}}
+
+{{- end -}}
+
+{{/*
+  *  Render for pods
+  *
+*/}}
+
+{{- define "ph.pod.render" -}}
+
+{{ include "ph.init_containers.render" . }}
+
+containers: {{ include "ph.pod.containers.render" . | nindent 2}}
+
+
+{{ if .affinity }}
+affinity: {{ .affinity | toYaml | nindent 2}}
+{{ end }}
+
+{{ if .nodeSelector }}
+nodeSelector: {{ .nodeSelector | toYaml | nindent 2}}
+{{ end }}
+
+imagePullSecrets: 
+  {{ range $v := default (list) .imagePullSecrets }}
+  - name: {{ $v }}
+  {{ end }}
+
+volumes: {{ include "ph.pod_volumes.render" . | nindent 2 }}
+
+{{ if hasKey . "automountServiceAccountToken" }}
+automountServiceAccountToken: {{ .automountServiceAccountToken }}
+{{ end }}
+
+{{ if hasKey . "terminationGracePeriodSeconds" }}
+terminationGracePeriodSeconds: {{ .terminationGracePeriodSeconds }}
+{{ end }}
+
+
+{{- end -}}
+
+{{/* Render for containers (loop) */}}
+{{- define "ph.pod.containers.render" -}}
+{{- if hasKey . "containers_dict" -}}
+  {{- range $k := ( keys .containers_dict | sortAlpha ) }}
+{{ include "ph.container.render" (get $.containers_dict $k) | nindent 2}}
+  {{- end }}
+{{- else -}}
+  {{- range $c := .containers }}
+{{ include "ph.container.render" $c | nindent 2}}
+  {{- end }}
+{{- end -}}
+{{- end -}}
+
+
+{{/*
+  *  Render for init containers
+  *
+*/}}
+{{- define "ph.init_containers.render" -}}
+
+{{- if hasKey . "init_containers" -}}
+
+initContainers:
+  {{- range $c := .init_containers }}
+  {{ include "ph.container.render" $c | nindent 2}}
+  {{- end -}}
+
+{{- else if hasKey . "init_containers_dict" -}}
+
+initContainers:
+  {{- range $k := ( keys .init_containers_dict | sortAlpha ) }}
+  {{ include "ph.container.render" (get $.init_containers_dict $k ) | nindent 2}}
+  {{- end -}}
+{{- end -}}
+
+{{- end -}}
+
