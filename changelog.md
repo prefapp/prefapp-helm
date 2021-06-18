@@ -2,6 +2,8 @@
 
 ## [unreleased]
 
+- Add metadata for cronjobs and jobs. [PR]().
+
 ## 0.0.14 [17-06-2021]
 
 - Add README
