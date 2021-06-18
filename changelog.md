@@ -2,7 +2,9 @@
 
 ## [unreleased]
 
-- Add metadata for cronjobs and jobs. [PR]().
+## 0.0.15 [18-06-2021]
+
+- Add metadata for cronjobs and jobs. [PR](https://github.com/prefapp/prefapp-helm/pull/87).
 
 ## 0.0.14 [17-06-2021]
 
