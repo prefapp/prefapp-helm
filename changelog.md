@@ -2,6 +2,8 @@
 
 ## [unreleased]
 
+- Add serverAccountName to pod renders. [PR]().
+
 ## 0.0.15 [18-06-2021]
 
 - Add metadata for cronjobs and jobs. [PR](https://github.com/prefapp/prefapp-helm/pull/87).
