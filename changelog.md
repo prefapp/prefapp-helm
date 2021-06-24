@@ -4,7 +4,7 @@
 
 ## 0.0.15 [24-06-2021]
 
-- Add serverAccountName to pod renders. [PR]().
+- Add serverAccountName to pod renders. [PR](https://github.com/prefapp/prefapp-helm/pull/90).
 
 ## 0.0.15 [18-06-2021]
 
