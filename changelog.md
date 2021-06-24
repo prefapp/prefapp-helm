@@ -2,6 +2,8 @@
 
 ## [unreleased]
 
+## 0.0.15 [24-06-2021]
+
 - Add serverAccountName to pod renders. [PR]().
 
 ## 0.0.15 [18-06-2021]
