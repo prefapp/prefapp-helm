@@ -23,6 +23,10 @@ spec: {{ include "ph.pod.render" . | nindent 2}}
 
 containers: {{ include "ph.pod.containers.render" . | nindent 2}}
 
+{{ if .serviceAccountName }}
+serviceAccountName: {{ .serviceAccountName }}
+{{ end }}
+
 
 {{ if .affinity }}
 affinity: {{ .affinity | toYaml | nindent 2}}
