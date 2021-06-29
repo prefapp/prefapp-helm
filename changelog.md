@@ -2,6 +2,8 @@
 
 ## [unreleased]
 
+## 0.0.17 [30-06-2021]
+
 - Add final augmenter
 
 ## 0.0.16 [24-06-2021]
