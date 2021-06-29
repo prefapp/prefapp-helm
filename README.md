@@ -249,6 +249,39 @@ Thus,
 Those blocks will be merged with a precedence from right to left. 
 
 
+#### Override augmenters
+
+A) The .final keyword
+
+Whenever we want to finalize a block of code, which means our version is the only one not the inherit block, we can use the .final keyword, like so:
+
+```yaml
+
+{{- define "parent.block" -}}
+
+foo:
+  a: 1
+  b: 2
+
+{{- end -}}
+
+{{- define "parent.block.@child" -}}
+
+foo.final: # this version is final thus the precedent version of the parent is ignored
+  c: 3
+
+{{- end -}}
+
+{{ include "ph.override" (list "parent.block.@child" . ) }}
+
+---
+# output
+foo:
+  c: 3
+
+
+``` 
+
 
 # License
 
