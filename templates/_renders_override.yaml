@@ -6,11 +6,15 @@
 {{- if regexMatch "@" $super }}
 {{ $b := include $datablock $ctx | fromYaml -}}
 {{ $a := include "ph.override" (list $super $ctx) | fromYaml }}
-{{ mustMerge $a $b | toYaml}}
+{{ $c := mustMerge $a $b }}
+{{ include "ph.augmenters.final" $c }}
+{{$c | toYaml }}
 {{- else -}}
 {{ $a := include $datablock $ctx | fromYaml -}}
 {{ $b := include $super $ctx | fromYaml -}}
-{{ mustMerge $a $b | toYaml}}
+{{ $c := mustMerge $a $b }}
+{{ include "ph.augmenters.final" $c }}
+{{$c | toYaml }}
 {{- end }}
 
 {{- end -}}
@@ -19,4 +23,30 @@
 {{ $name := . -}}
 {{ $tr := splitList "." $name -}}
 {{ initial $tr | join "." }}
+{{- end -}}
+
+
+{{- define "ph.augmenters.final" -}}
+
+{{ $obj := . }}
+
+{{ if kindIs "map" $obj }}
+
+  {{ range $k, $v := $obj }}
+  
+    {{ if regexMatch ".final" $k }}
+  
+      {{ $name := splitList ".final" $k | join "" }}
+  
+      {{ $_ := unset $obj $k }}
+      {{ $_ := set $obj $name $v }}
+  
+    {{ end }}
+  
+    {{ include "ph.augmenters.final" $v }}
+  
+  {{ end }}
+
+{{ end }}
+
 {{- end -}}
