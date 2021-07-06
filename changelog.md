@@ -2,6 +2,10 @@
 
 ## [unreleased]
 
+## 0.0.18 [6-07-2021]
+
+- Prepare ingress' render to accept multiple hosts. [PR](https://github.com/prefapp/prefapp-helm/pull/97). 
+
 ## 0.0.17 [30-06-2021]
 
 - Add final augmenter
