@@ -51,6 +51,13 @@ spec:
     http:
     {{ include "ph.ingress_rules.single.render" . | indent 6}}
 
+  {{- else if hasKey . "hosts" }}
+  {{ range $host := .hosts }}
+  - host: {{ $host.host }}
+    http:
+    {{ include "ph.ingress_rules.single.render" $host | indent 6}}
+
+  {{ end }}
   {{ else }}
   - http:
     {{ include "ph.ingress_rules.single.render" . | indent 6}}

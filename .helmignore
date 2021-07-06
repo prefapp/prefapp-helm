@@ -35,3 +35,5 @@ docs/
 a.yml
 
 *.tgz
+
+oldtests/
