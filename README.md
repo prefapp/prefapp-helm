@@ -2,6 +2,26 @@
 
 Prefapp Helm is a helm microframework for implementing modular charts and umbrella charts. 
 
+## Motivation
+
+Helm is helpful tool for creating and mantaining kubernetes templates and releases. 
+
+The problem with helm is that reusability is really hard to obtain. Somehow, this has been addressed in the [v3](https://helm.sh/blog/helm-3-released/) with the consolidation of two basic features:
+
+* [subcharts](https://helm.sh/docs/chart_template_guide/subcharts_and_globals/).
+* [library charts](https://helm.sh/docs/topics/library_charts/).
+
+By using the library chart feature, it is possible to create a set of fundamentals that avoid repetition in the implementation of helm charts. 
+
+Those fundamentals are the core of the prefapp-helm microframework. 
+
+prefapp-helm is implemented as a library chart to be used on application charts as the basic renders for Kubernetes artifacts. 
+
+It has two more advanced features:
+
+* An overload method
+* A stash.
+
 ## To install
 
 Add the prefapp-helm repo to your helm repos. 
@@ -24,25 +44,79 @@ dependencies:
     repository: https://prefapp.github.io/prefapp-helm
 ```
 
-## Motivation
+## Hello World
 
-Helm is helpful tool for creating and mantaining kubernetes templates and releases. 
+- Create a chart whit __helm__ command.
 
-The problem with helm is that reusability is really hard to obtain. Somehow, this has been addressed in the [v3](https://helm.sh/blog/helm-3-released/) with the consolidation of two basic features:
+```shell
+cd /tmp && \
+helm create ph-hello-world
+```
 
-* [subcharts](https://helm.sh/docs/chart_template_guide/subcharts_and_globals/).
-* [library charts](https://helm.sh/docs/topics/library_charts/).
+- Clean chart placeholders
 
-By using the library chart feature, it is possible to create a set of fundamentals that avoid repetition in the implementation of helm charts. 
+```shell
+cd ph-hello-world && \
+rm -rf templates/* charts && \
+cat /dev/null > values.yaml
+```
 
-Those fundamentals are the core of the prefapp-helm microframework. 
+- Add prefapp-helm depndencia in CHart.yaml file
 
-prefapp-helm is implemented as a library chart to be used on application charts as the basic renders for Kubernetes artifacts. 
+```shell
+cat <<EOF > Chart.yaml
+apiVersion: v2
+name: hello-prefapp-helm
+description: A chart with prefapp-helm microframework
+type: application
+version: 0.1.0
+appVersion: "1.16.0"
+dependencies:
+  - name: prefapp-helm
+    version: 0.0.18
+    repository: https://prefapp.github.io/prefapp-helm
+EOF
+```
 
-It has two more advanced features:
+- Helm depencency update
 
-* An overload method
-* A stash.
+```shell
+helm dep update
+```
+
+- Create our first template
+
+```shell
+cat <<EOF > templates/my_firt_template_with_preffapp_helm.yaml
+{{- define "my.pod.data" -}}
+name: "my-pod"
+containers:
+  - name: app
+    image: ubuntu:20.04
+{{- end -}}
+{{ include "ph.pod.render" (include "my.pod.data" . | fromYaml ) }}
+EOF
+```
+
+- Template
+
+```shell
+helm template . -s templates/my_firt_template_with_preffapp_helm.yaml
+```
+
+> Tip: Sometimes prefapp-helm returns an output with some blank lines. To repair it, you can create an alias and add it to the end of the helm command.
+
+* Alias
+
+```shell
+ph='|grep --color=never "\S"'
+```
+
+* Example
+
+```shell
+helm template . -s templates/my_firt_template_with_preffapp_helm.yaml ph
+```
 
 ## Renders
 
