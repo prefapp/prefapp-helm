@@ -1,6 +1,8 @@
 # Changelog
 
-## [unreleased]
+## 1.20.0 [unreleased]
+
+- Equalization of the prefapp version to the K8s version
 
 ## 0.0.18 [6-07-2021]
 
