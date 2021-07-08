@@ -2,7 +2,7 @@
 
 ## 1.20.0 [unreleased]
 
-- Equalization of the prefapp version to the K8s version
+- Match prefapp version to the API K8s version.
 
 ## 0.0.18 [6-07-2021]
 
