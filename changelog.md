@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.20.0 [unreleased]
+## 1.21.0 [unreleased]
 
 - Match prefapp version to the API K8s version.
 
