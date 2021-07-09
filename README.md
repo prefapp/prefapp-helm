@@ -34,7 +34,6 @@ helm repo update
 Then, include in your charts as a dependency:
 
 ```yaml
-
 # Chart.yaml
 
 dependencies:
@@ -49,7 +48,7 @@ dependencies:
 - Create a chart whit __helm__ command.
 
 ```shell
-cd /tmp && \
+cd /<my_route> && \
 helm create ph-hello-world
 ```
 
