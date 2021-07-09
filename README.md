@@ -61,7 +61,7 @@ rm -rf templates/* charts && \
 cat /dev/null > values.yaml
 ```
 
-- Add prefapp-helm depndencia in CHart.yaml file
+- Add prefapp-helm dependencia in Chart.yaml file
 
 ```shell
 cat <<EOF > Chart.yaml
@@ -115,7 +115,7 @@ dbl='|grep --color=never "\S"'
 * Example
 
 ```shell
-helm template . -s templates/my_firt_template_with_preffapp_helm.yaml ph
+helm template . -s templates/my_firt_template_with_preffapp_helm.yaml dbl
 ```
 
 ## Renders
