@@ -106,10 +106,10 @@ helm template . -s templates/my_firt_template_with_preffapp_helm.yaml
 
 > Tip: Sometimes prefapp-helm returns an output with some blank lines. To repair it, you can create an alias and add it to the end of the helm command.
 
-* Alias
+* Alias dbl (DeleteBlankLines)
 
 ```shell
-ph='|grep --color=never "\S"'
+dbl='|grep --color=never "\S"'
 ```
 
 * Example
