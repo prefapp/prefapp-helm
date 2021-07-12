@@ -54,6 +54,8 @@ command: {{ range $a := .command }}
 {{ end }}
 {{ include "ph.env_values_configmap.render" . }}
 {{ include "ph.env_values_secret.render" . }}
+{{ include "ph.env_values_from_field_ref.render" .}}
+{{ include "ph.env_values_from_resource_ref.render" .}}
 {{- end -}}
 
 
@@ -84,6 +86,34 @@ command: {{ range $a := .command }}
   {{ end }}
 {{ end }}
 {{- end -}}
+
+
+
+{{- define "ph.env_values_from_field_ref.render" -}}
+
+{{- range $k, $v := (default (dict) .env_from_field_ref) }}
+- name: {{ $k }}
+  valueFrom:
+    fieldRef:
+      fieldPath: {{ $v }}
+{{ end -}}
+{{- end -}}
+
+
+
+{{- define "ph.env_values_from_resource_ref.render" -}}
+
+{{- range $e := (default (list) .env_from_resource_ref) }}
+  {{- range $k, $v := (default (list) $e.values) }}
+- name: {{ $k }}
+  valueFrom:
+    resourceFieldRef:
+      containerName: {{ $e.container }}
+      resource: {{ $v }}
+  {{ end }}
+{{-  end }}
+{{- end -}}
+
 
 
 {{- define "ph.env_from.render" -}}
