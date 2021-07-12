@@ -2,6 +2,12 @@
 
 ## [unreleased]
 
+## 1.21.0 [12-07-2021]
+
+- New version system.
+
+- Updated renders container to add new env capabilities [PR](https://github.com/prefapp/prefapp-helm/pull/102).
+
 ## 0.0.18 [6-07-2021]
 
 - Prepare ingress' render to accept multiple hosts. [PR](https://github.com/prefapp/prefapp-helm/pull/97). 
