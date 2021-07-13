@@ -2,6 +2,8 @@
 
 ## [unreleased]
 
+- Add render for tls-secrets. [PR]().
+
 ## 1.21.0 [12-07-2021]
 
 - New version system.
