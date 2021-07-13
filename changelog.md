@@ -1,6 +1,10 @@
 # Changelog
 
+## 0.2.0 [13-07-2021]
 
+- Adopted SemVer 2
+
+- Add render for tls-secrets. [PR](https://github.com/prefapp/prefapp-helm/releases).
 
 ## 1.21.0 [12-07-2021]
 
