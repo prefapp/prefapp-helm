@@ -2,6 +2,7 @@
 
 ## 0.2.1 [Unreleased]
 
+- Prevent encoding secrets renderer TLS type.
 - Split secrets renderer TLS type from ordinary secrets. [PR](https://github.com/prefapp/prefapp-helm/pull/109).
 
 ## 0.2.0 [13-07-2021]
