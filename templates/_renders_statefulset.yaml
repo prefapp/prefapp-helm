@@ -1,0 +1,42 @@
+{{- define "ph.statefulset.render" -}}
+apiVersion: apps/v1
+kind: StatefulSet
+{{ include "ph.meta.render" . }}
+{{ include "ph.statefulset.spec.render" . }}
+{{- end -}}
+
+{{- define "ph.statefulset.spec.render" -}}
+spec:
+  serviceName: {{ required "A .serviceName is required" .serviceName }}
+  selector:
+    matchLabels: {{ required "A .selector is required" .selector | toYaml | nindent 6 }}
+  replicas: {{ (default 1 .replicas) }}
+  template: {{ include "ph.statefulset.template.render" . | nindent 4 }}
+  {{ include "ph.statefulset.volumeClaimTemplates.render" . | nindent 2 }}
+{{- end -}}
+
+{{- define "ph.statefulset.template.render" -}}
+metadata:
+  labels: {{ .selector | toYaml | nindent 4 }}
+  annotations:
+spec: {{ include "ph.pod.render" . | nindent 2 }}
+{{- end -}}
+
+{{- define "ph.statefulset.metadata.volumeClaimTemplates.render" -}}
+- metadata: {{ .metadataVolume | toYaml | nindent 4 }}
+{{- end -}}
+
+{{- define "ph.statefulset.volumeClaimTemplates.render" -}}
+volumeClaimTemplates:
+{{ include "ph.statefulset.metadata.volumeClaimTemplates.render" . | nindent 2 }}
+{{ include "ph.statefulset.spec.volumeClaimTemplates.render" . | nindent 4 }}
+{{- end -}}
+
+{{- define "ph.statefulset.spec.volumeClaimTemplates.render" -}}
+spec:
+  accessModes:
+  resources:
+    requests:
+      storage:
+  storageClassName:
+{{- end -}}
