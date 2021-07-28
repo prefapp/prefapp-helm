@@ -22,7 +22,7 @@ entries:
   - apiVersion: v2
     created: "2021-07-28T11:33:26.136255548Z"
     description: Prefapp's library chart for applications
-    digest: 4071a4aaf934f71cbdf9d8f54fbb278c81a08785c8b68a4a370a2f8ae53fe1ab
+    digest: 252bbedf857c3126eb734010fc41588cdfd842cdfc2fb0eecd444caf2f6d6ab6
     name: prefapp-helm
     type: library
     urls:
