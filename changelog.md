@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1 [Released]
+
+- Forced quotes on ingress rule hosts. 
+
 ## 0.2.0 [13-07-2021]
 
 - Adopted SemVer 2
