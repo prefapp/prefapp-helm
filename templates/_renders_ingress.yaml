@@ -53,7 +53,7 @@ spec:
 
   {{- else if hasKey . "hosts" }}
   {{ range $host := .hosts }}
-  - host: {{ $host.host | toString | quote }}
+  - host: {{ $host.host }}
     http:
     {{ include "ph.ingress_rules.single.render" $host | indent 6}}
 
