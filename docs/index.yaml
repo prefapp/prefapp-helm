@@ -20,15 +20,6 @@ entries:
     - prefapp-helm-0.2.1.tgz
     version: 0.2.1
   - apiVersion: v2
-    created: "2021-07-28T11:47:29.787561555Z"
-    description: Prefapp's library chart for applications
-    digest: 758d9a6f51fac1345366318fe7366a9e2e1119d374df6d6a93d56f747f9c77f5
-    name: prefapp-helm
-    type: library
-    urls:
-    - prefapp-helm-0.2.1-rc.tgz
-    version: 0.2.1-rc
-  - apiVersion: v2
     created: "2021-07-28T11:47:29.778972203Z"
     description: Prefapp's library chart for applications
     digest: 252bbedf857c3126eb734010fc41588cdfd842cdfc2fb0eecd444caf2f6d6ab6
