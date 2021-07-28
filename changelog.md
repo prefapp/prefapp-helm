@@ -1,8 +1,8 @@
 # Changelog
 
-## 0.2.1 [Released]
+## 0.2.1-rc [Release candidate]
 
-- Forced quotes on ingress rule hosts. 
+- Forced quotes on ingress rule hosts. [PR](https://github.com/prefapp/prefapp-helm/pull/111).
 
 ## 0.2.0 [13-07-2021]
 
