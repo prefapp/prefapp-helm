@@ -355,6 +355,37 @@ foo:
 
 ``` 
 
+# Recipes
+
+> Place for use example exhibition.
+
+## StatefulSets
+
+### Template
+
+```yaml
+{{- define "foo.statefulset.render" }}
+
+name: {{ .Release.name }}
+
+selector: {{ .Values.selector | toYaml | nindent 2 }}
+
+labels: {{ .Values.labels | toYaml | nindent 2 }}
+
+serviceName: {{ .Values.serviceName }}
+
+replicas: {{ .Values.replicas }}
+
+containers_dict:
+  app:
+    image: {{ .Values.image }}
+
+volumeClaimTemplates: {{ .Values.volumeClaimTemplates | toYaml | nindent 2 }}
+
+{{- end -}}
+```
+
+---
 
 # License
 
@@ -366,10 +397,5 @@ http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-
-
-
-
-
-
+---
 
