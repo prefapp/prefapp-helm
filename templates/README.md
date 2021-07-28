@@ -1,4 +1,4 @@
-# Definition block trees
+# Fucntion block definition relationship tress
 
 * [StatefulSet](#statefulset)
 
@@ -9,10 +9,7 @@
 |_ ph.statefulset.render
   |_ ph.meta.render
   |_ ph.statefulset.spec.render
-    |_ ph.statefulset.template.render
-      |_ ph.pod.render
-    |_ ph.statefulset.volumeClaimTemplates.render
-      |_ ph.statefulset.metadata.volumeClaimTemplates.render
-      |_ ph.statefulset.spec.volumeClaimTemplates.render
+    |_ spec.template > ph.meta.render
+    |_ spec.template.spec > ph.pod.render
 ```
 
