@@ -1,0 +1,16 @@
+{{- define "ph.role_binding.render" -}}
+
+{{ $subjects := required "A subjects object is required" .subjects }}
+{{ $roleRef := required "A roleRef object is required" .roleRef }}
+
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+
+{{ include "ph.meta.render" . }}
+
+subjects: {{ $subjects | toYaml | nindent 2 }}
+
+roleRef: {{ $roleRef | toYaml | nindent 2 }}
+
+{{- end -}}
