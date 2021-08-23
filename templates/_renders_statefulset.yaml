@@ -12,7 +12,8 @@ spec:
     matchLabels: {{ required "A .selector is required" .selector | toYaml | nindent 6 }}
   replicas: {{ (default 1 .replicas) }}
   template:
-    labels: {{ required "A .labels is required" .labels | toYaml | nindent 6 }}
+    metadata:
+      labels: {{ required "A .labels is required" .selector | toYaml | nindent 8 }}
     spec: {{ include "ph.pod.render" . | nindent 6 }}
   volumeClaimTemplates: {{ .volumeClaimTemplates | toYaml | nindent 4 }}
 {{- end -}}
