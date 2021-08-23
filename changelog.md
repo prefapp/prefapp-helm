@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.3 [23-08-2021]
+
+- Add statefulset render. [PR](https://github.com/prefapp/prefapp-helm/pull/110).
+
 ## 0.2.2 [23-08-2021]
 
 - Add rbac support. [PR](https://github.com/prefapp/prefapp-helm/pull/117).  
