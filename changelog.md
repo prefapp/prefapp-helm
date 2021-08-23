@@ -7,6 +7,8 @@
 
 ## 0.2.1 [28-07-2021]
 
+- Add statefulset render. [PR](https://github.com/prefapp/prefapp-helm/pull/110).
+
 - Prevent encoding secrets renderer TLS type. [PR](https://github.com/prefapp/prefapp-helm/pull/109).
 
 - Forced quotes on ingress rule hosts. [PR](https://github.com/prefapp/prefapp-helm/pull/111).
