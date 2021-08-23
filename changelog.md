@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.2 [23-08-2021]
+
+- Add rbac support. [PR](https://github.com/prefapp/prefapp-helm/pull/117).  
+- Add service-account support. [PR](https://github.com/prefapp/prefapp-helm/pull/117). 
+
 ## 0.2.1 [28-07-2021]
 
 - Prevent encoding secrets renderer TLS type. [PR](https://github.com/prefapp/prefapp-helm/pull/109).
