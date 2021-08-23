@@ -1,4 +1,4 @@
-# Fucntion block definition relationship tress
+# Function block definition relationship tress
 
 * [StatefulSet](#statefulset)
 
