@@ -9,7 +9,6 @@
 |_ ph.statefulset.render
   |_ ph.meta.render
   |_ ph.statefulset.spec.render
-    |_ spec.template > ph.meta.render
     |_ spec.template.spec > ph.pod.render
 ```
 
