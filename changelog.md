@@ -2,7 +2,7 @@
 
 ## 0.2.4 [01-09-2021]
 
-- Add testrender render. [PR](https://github.com/prefapp/prefapp-helm/pull/123).
+- Add test render. [PR](https://github.com/prefapp/prefapp-helm/pull/123).
 
 ## 0.2.3 [23-08-2021]
 
