@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.4 [01-09-2021]
+
+- Add test render. [PR](https://github.com/prefapp/prefapp-helm/pull/123).
+- Add restartPolicy on pod render [PR](https://github.com/prefapp/prefapp-helm/pull/124).
+
 ## 0.2.3 [23-08-2021]
 
 - Add statefulset render. [PR](https://github.com/prefapp/prefapp-helm/pull/110).
