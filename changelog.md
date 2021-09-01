@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.5 [01-09-2021]
+
+- Fix whitespaces
+
 ## 0.2.4 [01-09-2021]
 
 - Add test render. [PR](https://github.com/prefapp/prefapp-helm/pull/123).
