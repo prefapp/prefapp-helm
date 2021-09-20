@@ -1,6 +1,18 @@
+{{- define "ph.cronjob.version" }}
+
+{{ $version := (default "1.20.0" .version) }}
+
+{{- if semverCompare ">=1.20.0" $version -}}
+apiVersion: batch/v1
+{{- else }}
+apiVersion: batch/v1beta1
+{{- end -}}
+
+{{- end -}}
+
 {{- define "ph.cronjob.render" -}}
 
-apiVersion: batch/v1beta1
+{{ include "ph.cronjob.version" . }}
 kind: CronJob
 
 {{ include "ph.meta.render" . }}
