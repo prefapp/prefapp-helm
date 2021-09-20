@@ -1,5 +1,16 @@
 {{- define "ph.curl.template_structure" -}}
 
+
+{{/*
+  *  From ph.test.render (basically the same as pod) this templates overrides
+  *   - name
+  *   - annotations
+  *   labels
+  *   containers.name
+  *   containers.image
+  *   containers.args with the necessary culr arguments
+*/}}
+
 name: {{ .name }}
 annotations:
   helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
