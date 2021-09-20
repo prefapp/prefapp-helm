@@ -2,7 +2,7 @@
 
 {{ $version := (default "1.20.0" .version) }}
 
-{{- if semverCompare ">=1.20.0" $version -}}
+{{- if semverCompare ">=1.21.0" $version -}}
 apiVersion: batch/v1
 {{- else }}
 apiVersion: batch/v1beta1
