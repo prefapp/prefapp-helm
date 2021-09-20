@@ -4,6 +4,10 @@ name: {{ .name }}
 annotations:
   helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
 
+{{ with .labels }}
+labels: {{ . | toYaml | nindent 2 }}
+{{ end }}
+
 {{ $args := (list) }}
 {{ $args = append $args "-X" }}
 {{ $args = append $args (default "GET" .curl_options.verb) }}
