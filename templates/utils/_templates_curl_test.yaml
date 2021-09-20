@@ -1,0 +1,45 @@
+{{- define "ph.curl.template_structure" -}}
+
+
+{{/*
+  *  From ph.test.render (basically the same as pod) this templates overrides
+  *   - name
+  *   - annotations
+  *   labels
+  *   containers.name
+  *   containers.image
+  *   containers.args with the necessary culr arguments
+*/}}
+
+name: {{ .name }}
+annotations:
+  helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
+
+{{ with .labels }}
+labels: {{ . | toYaml | nindent 2 }}
+{{ end }}
+
+{{ $args := (list) }}
+{{ $args = append $args "-X" }}
+{{ $args = append $args (default "GET" .curl_options.verb) }}
+{{ range $header := .curl_options.headers }}
+  {{ $args = append $args "-H" }}
+  {{ $args = append $args $header }}
+{{ end }}
+
+{{ $args = append $args .curl_options.url }}
+
+
+containers:
+  - name: test
+    image: curlimages/curl
+    args: {{ $args | toYaml | nindent 6 }}
+
+{{- end -}}
+
+
+{{- define "ph.curl_test.template" -}}
+
+{{ include "ph.test.render" ( include "ph.curl.template_structure" . | fromYaml )}}
+
+{{- end -}}
