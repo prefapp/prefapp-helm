@@ -25,7 +25,6 @@ containers:
 
 {{- define "ph.curl_test.template" -}}
 
-{{ include "ph.test.render" ( include "ph.curl.template_structure" $ | fromYaml )}}
-
+{{ include "ph.test.render" ( include "ph.curl.template_structure" . | fromYaml )}}
 
 {{- end -}}
