@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.7 [20-09-2021]
+
+- Added cronjob version awareness [PR](https://github.com/prefapp/prefapp-helm/pull/132).
+
 ## 0.2.6 [20-09-2021]
 
 - Added the first template curl_test [PR](https://github.com/prefapp/prefapp-helm/pull/130).
