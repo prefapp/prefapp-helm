@@ -27,26 +27,15 @@
 
 
 {{- define "ph.augmenters.final" -}}
-
 {{ $obj := . }}
-
 {{ if kindIs "map" $obj }}
-
   {{ range $k, $v := $obj }}
-  
     {{ if regexMatch ".final" $k }}
-  
       {{ $name := splitList ".final" $k | join "" }}
-  
       {{ $_ := unset $obj $k }}
       {{ $_ := set $obj $name $v }}
-  
     {{ end }}
-  
     {{ include "ph.augmenters.final" $v }}
-  
   {{ end }}
-
 {{ end }}
-
 {{- end -}}
