@@ -33,6 +33,9 @@ metadata:
 {{- define "ph.ingress_spec.render" -}}
 
 spec:
+  {{- if hasKey . "ingressClassName" }}
+  ingressClassName: {{ .ingressClassName }}
+  {{ end }}
   {{- if hasKey . "tls" }}
   tls:
     {{ range $tls := .tls }}
