@@ -2,7 +2,8 @@
 
 ## 0.2.9 [21-10-2021]
 
-- Add security contexts for pods and containers [PR]().
+- Add security contexts for pods and containers [PR](https://github.com/prefapp/prefapp-helm/pull/139).
+
 
 ## 0.2.7 [20-09-2021]
 
