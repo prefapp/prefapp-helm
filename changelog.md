@@ -1,6 +1,6 @@
 # Changelog
 
-## unreleased 
+## 0.2.9 [21-10-2021]
 
 - Add security contexts for pods and containers [PR]().
 
