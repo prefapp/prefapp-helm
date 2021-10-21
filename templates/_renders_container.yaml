@@ -17,6 +17,10 @@
   lifecycle:  {{ . | toYaml | nindent 4 }}
 {{ end }}
 
+{{/*Security context*/}}
+{{with .securityContext }}
+  securityContext: {{ . | toYaml | nindent 4 }}
+{{ end }}
 
   volumeMounts: {{ include "ph.container.volume_mounts.render" . | nindent 4 }}
   resources: {{ include "ph.container.resources.render" . | nindent 4 }} 
