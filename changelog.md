@@ -1,5 +1,9 @@
 # Changelog
 
+## unreleased 
+
+- Add security contexts for pods and containers [PR]().
+
 ## 0.2.7 [20-09-2021]
 
 - Fix cronjob version [PR](https://github.com/prefapp/prefapp-helm/pull/134).
