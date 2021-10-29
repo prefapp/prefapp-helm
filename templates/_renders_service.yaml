@@ -17,10 +17,10 @@ spec:
   - protocol: {{ default "TCP" $p.protocol }}
     targetPort: {{ $p.pod }}
     port: {{ $p.service }}
+    {{- if hasKey $p "nodePort" }}
+    nodePort: {{ $p.nodePort }}
+    {{ end }}
     {{ with $p.name }}
-    {{- if hasKey . "nodePort" }}
-    nodePort: {{ .nodePort | toYaml | nindent 4 }}
-    {{- end }}
     name: {{ . }}
    {{ end }}
   {{ end -}} 
