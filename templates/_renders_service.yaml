@@ -18,6 +18,9 @@ spec:
     targetPort: {{ $p.pod }}
     port: {{ $p.service }}
     {{ with $p.name }}
+    {{- if hasKey . "nodePort" }}
+    nodePort: {{ .nodePort | toYaml | nindent 4 }}
+    {{- end }}
     name: {{ . }}
    {{ end }}
   {{ end -}} 
