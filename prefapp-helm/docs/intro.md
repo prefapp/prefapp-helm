@@ -11,14 +11,14 @@ Welcome to the prefapp-helm ! Here you will find documentation on how to use thi
 The documentation of this library is divided based on its main functionalities:
 
   - [Render](renders/renders_intro)
-    - [Deployment](Render-deployment)
-    - [Service](Render-service)
-    - [Configmap](Render-configmap)
-    - [Secret](render-secret)
-    - [Ingress](render-ingress)
-    - [ServiceAccount](service-account)
-  - [Override](Override)
-  - [Stash](Stash)
+    - [Deployment](renders/deployment)
+    - [Service](renders/service)
+    - [Configmap](renders/configmap)
+    - [Secret](renders/secret)
+    - [Ingress](renders/ingress)
+    - [ServiceAccount](/)
+  - [Override](override)
+  - [Stash](/)
 
 
 
@@ -32,7 +32,7 @@ dependencies:
 ```
 
 You can find some chart examples in this section:
-- [Chart examples](broken_link)
-  - [Render Deploy-Service](broken_link)
-  - [Render Deploy-Configmap](broken_link)
-  - [Override](broken_link)
+- [Chart examples](/)
+  - [Render Deploy-Service](/)
+  - [Render Deploy-Configmap](/)
+  - [Override](/)

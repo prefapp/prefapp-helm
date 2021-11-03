@@ -50,4 +50,4 @@ Open http://localhost:3000 and follow the tutorial.
 
 ## Use
 1. `npm install`
-2. `npmn run serve`
+2. `npmn run start`

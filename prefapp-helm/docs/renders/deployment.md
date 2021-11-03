@@ -27,10 +27,10 @@ The render expects:
 ports:
   - pod: 80
 ```
-This decision will be explained in detail in the [Render-service](Render-service) documentation.
+This decision will be explained in detail in the [Render-service](./service) documentation.
 
 ### env
-The render expects the environment values to be added in several ways [Env-helpers](Env-helpers)
+The render expects the environment values to be added in several ways [Env-helpers](./env_helpers)
 
 
 ## Example of ph.deployment.render
