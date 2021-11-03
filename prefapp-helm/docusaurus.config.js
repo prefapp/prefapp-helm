@@ -6,15 +6,15 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
-  url: 'https://your-docusaurus-test-site.com',
+  title: 'prefapp-helm',
+  tagline: 'Prefapp Helm is a helm microframework for implementing modular charts and umbrella charts.',
+  url: 'https://prefapp-helm.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  favicon: 'img/favicon.png',
+  organizationName: 'prefapp', // Usually your GitHub org/user name.
+  projectName: 'prefapp-helm', // Usually your repo name.
 
   presets: [
     [
@@ -46,7 +46,7 @@ const config = {
         title: 'My Site',
         logo: {
           alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          src: 'img/prefapp_helm.png',
         },
         items: [
           {
