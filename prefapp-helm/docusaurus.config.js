@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'prefapp-helm',
+  title: 'Prefapp Helm',
   tagline: 'Prefapp Helm is a helm microframework for implementing modular charts and umbrella charts.',
   url: 'https://prefapp-helm.com',
   baseUrl: '/',
@@ -43,7 +43,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'My Site',
+        title: 'PrefappHelm',
         logo: {
           alt: 'My Site Logo',
           src: 'img/prefapp_helm.png',
@@ -53,9 +53,9 @@ const config = {
             type: 'doc',
             docId: 'intro',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Documentation',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          {to: '/overview', label: 'Quick Overview', position: 'left'},
           {
             href: 'https://github.com/prefapp/prefapp-helm',
             label: 'GitHub',

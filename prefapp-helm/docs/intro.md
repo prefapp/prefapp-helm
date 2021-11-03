@@ -1,37 +1,38 @@
 ---
 sidebar_position: 1
+sidebar_label: 'Introduction'
 ---
 
-# Tutorial Intro
 
-Let's discover **Docusaurus in less than 5 minutes**.
+# Introduction
 
-## Getting Started
+Welcome to the prefapp-helm ! Here you will find documentation on how to use this Helm library chart.
 
-Get started by **creating a new site**.
+The documentation of this library is divided based on its main functionalities:
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+  - [Render](renders/renders_intro)
+    - [Deployment](Render-deployment)
+    - [Service](Render-service)
+    - [Configmap](Render-configmap)
+    - [Secret](render-secret)
+    - [Ingress](render-ingress)
+    - [ServiceAccount](service-account)
+  - [Override](Override)
+  - [Stash](Stash)
 
-## Generate a new site
 
-Generate a new Docusaurus site using the **classic template**:
 
-```shell
-npm init docusaurus@latest my-website classic
+## Usage
+To get started using Prefapp-helm you just have to add the *dependency* to your `Chart.yaml`:
+```
+dependencies:
+- name: prefapp-helm
+  repository: https://prefapp.github.io/prefapp-helm
+  version: 0.0.3
 ```
 
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-
-npx docusaurus start
-```
-
-Test
-
-Your site starts at `http://localhost:3000`.
-
-Open `docs/intro.md` and edit some lines: the site **reloads automatically** and display your changes.
+You can find some chart examples in this section:
+- [Chart examples](broken_link)
+  - [Render Deploy-Service](broken_link)
+  - [Render Deploy-Configmap](broken_link)
+  - [Override](broken_link)
