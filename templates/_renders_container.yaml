@@ -142,12 +142,19 @@ command: {{ range $a := .command }}
 {{- define "ph.container.ports.render" -}}
 
 {{- range $port := .ports -}}
+  {{- if hasKey $port "multiply" }}
+    {{- range $i := untilStep 0 ($port.multiply|int) 1 }}
+- containerPort: {{ add $i $port.pod}}
+  protocol: {{ default "TCP" $port.protocol }}
+    {{ end }}   
+  {{- else }}
 - containerPort: {{ $port.pod }}
   protocol: {{ default "TCP" $port.protocol }}
-  {{ with $port.name }}
+  {{- with $port.name }}
   name: {{ . }}
+  {{- end }}
   {{ end }}
-{{end -}}
+{{- end }}
 
 {{- end -}}
 
