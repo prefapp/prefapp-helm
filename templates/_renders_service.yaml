@@ -14,6 +14,7 @@ spec:
   {{- end }}
   ports:
   {{ range $p := required $error .ports }}
+    {{- if hasKey $p "service" }}
     {{- if hasKey $p "multiply" }}
       {{ range $i := untilStep 0 ($p.multiply|int) 1 }}
   - protocol: {{ default "TCP" $p.protocol }}
@@ -30,6 +31,7 @@ spec:
     {{- with $p.name }}
     name: {{ . }}
       {{ end }}
+   {{- end }}
    {{- end }}
   {{ end -}} 
 {{- end -}}
