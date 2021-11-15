@@ -147,7 +147,7 @@ command: {{ range $a := .command }}
 - containerPort: {{ add $i $port.pod}}
   protocol: {{ default "TCP" $port.protocol }}
     {{ end }}   
-  {{- else if not (hasKey $port "range_service")}}
+  {{- else }}
 - containerPort: {{ $port.pod }}
   protocol: {{ default "TCP" $port.protocol }}
   {{- with $port.name }}
