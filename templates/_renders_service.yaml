@@ -14,12 +14,23 @@ spec:
   {{- end }}
   ports:
   {{ range $p := required $error .ports }}
-    {{- if hasKey $p "service" }}
-    {{- if hasKey $p "multiply" }}
-      {{ range $i := untilStep 0 ($p.multiply|int) 1 }}
+    {{- if hasKey $p "range_service" }}
+      {{ range $i := untilStep 0 ($p.range_service|int) 1 }}
   - protocol: {{ default "TCP" $p.protocol }}
-    targetPort: {{ add $i $p.pod }}
+    targetPort: {{ $p.pod }}
     port: {{ add $i $p.service}}
+        {{- with $p.name }}
+    name: {{ . }}
+        {{- end }}
+      {{ end }}
+    {{- else if hasKey $p "range"}}
+      {{ range $i := untilStep 0 ($p.range|int) 1 }}
+  - protocol: {{ default "TCP" $p.protocol }}
+    targetPort: {{add $i $p.pod }}
+    port: {{ add $i $p.service}}
+        {{- with $p.name }}
+    name: {{ . }}
+        {{- end }}
       {{ end }}
     {{- else }}
   - protocol: {{ default "TCP" $p.protocol }}
@@ -31,7 +42,6 @@ spec:
     {{- with $p.name }}
     name: {{ . }}
       {{ end }}
-   {{- end }}
    {{- end }}
   {{ end -}} 
 {{- end -}}
