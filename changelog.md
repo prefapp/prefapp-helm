@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.11 [21-10-2021]
+
+- Added range ports services and containers [PR](https://github.com/prefapp/prefapp-helm/pull/148)
+
 ## 0.2.10 [21-10-2021]
 
 - Added suppport for NodePort type services [PR](https://github.com/prefapp/prefapp-helm/pull/145)
