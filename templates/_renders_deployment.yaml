@@ -17,7 +17,7 @@ apiVersion: apps/v1
 {{- define "ph.deployment.spec.render" -}}
 
 spec:
-  replicas: {{ (default 1 .replicas) }}
+  replicas: {{ if eq (toString .replicas) "0" }} {{ .replicas }} {{ else }} {{ (default 1 .replicas) }} {{ end }}
   selector: 
     matchLabels: {{ include "ph.deployment.selector.render" . | nindent 6}}
   template: {{ include "ph.deployment.template.render" . | nindent 4 }}   
