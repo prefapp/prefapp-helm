@@ -1,6 +1,11 @@
 # Changelog
 
-## 0.2.11 [21-10-2021]
+## 0.2.12 [19-11-2021]
+
+- Fixed replicas to allow 0 but not by default [PR](https://github.com/prefapp/prefapp-helm/pull/)
+
+
+## 0.2.11 [18-11-2021]
 
 - Added range ports services and containers [PR](https://github.com/prefapp/prefapp-helm/pull/148)
 
