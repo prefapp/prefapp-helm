@@ -1,0 +1,29 @@
+{{- define "ph.deployment_multi_slot.render" -}}
+
+{{ $datablock := first .}}
+{{ $ctx := last . }}
+
+{{ $slots := required "[ph.deployment_multi_slot.render]: A slots object is required" $ctx.Values.slots }}
+
+{{/*Let's render the default slot*/}}
+---
+{{ $_ := set $ctx.Values "Slot" $ctx.Values }}
+
+{{ $_ := set $ctx.Values.Slot "Name" "Default" }}
+
+{{ include "ph.deployment.render" (include $datablock $ctx  | fromYaml ) }}
+
+{{/*Now iterate over the rest of the slots*/}}
+
+{{ range $slot, $values := $slots }}
+
+{{ $_ := set $ctx.Values "Slot" $values }}
+
+{{ $_ := set $ctx.Values.Slot "Name" $slot }}
+
+---
+{{ include "ph.deployment.render" (include $datablock $ctx  | fromYaml ) }}
+
+{{ end }}
+
+{{- end -}}
