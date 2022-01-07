@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1 [06-01-2022]
+
+- Add Multi-slots support for deployments [Experimental] [PR](https://github.com/prefapp/prefapp-helm/pull/153).
+
 ## 0.2.13 [29-12-2021]
 
 - Fixed problem on K8s version passed to ingress render [PR](https://github.com/prefapp/prefapp-helm/pull/154).
