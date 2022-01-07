@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.2 [06-01-2022]
+
+- Add Multi-slots support for services and ingress [Experimental] [PR](https://github.com/prefapp/prefapp-helm/pull/157).
+
 ## 0.3.1 [06-01-2022]
 
 - Add Multi-slots support for deployments [Experimental] [PR](https://github.com/prefapp/prefapp-helm/pull/153).
