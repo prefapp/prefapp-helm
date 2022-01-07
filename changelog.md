@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.13 [29-12-2021]
+
+- Fixed problem on K8s version passed to ingress render [PR](https://github.com/prefapp/prefapp-helm/pull/154).
+
 ## 0.2.12 [19-11-2021]
 
 - Fixed replicas to allow 0 but not by default [PR](https://github.com/prefapp/prefapp-helm/pull/)
