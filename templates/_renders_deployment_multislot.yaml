@@ -1,7 +1,20 @@
-{{- define "ph.deployment_multi_slot.render" -}}
+{{- define "ph.multi_slot.render" -}}
 
-{{ $datablock := first .}}
-{{ $ctx := last . }}
+{{ $datablock := false }}
+{{ $ctx := false }}
+{{ $render := false }}
+{{ $override := false }}
+
+{{ if (eq (len .) 4)  }}
+{{ $datablock = first .}}
+{{ $ctx = index . 1 }}
+{{ $override = true }}
+{{ $render =  last . }}
+{{ else }}
+{{ $datablock = first .}}
+{{ $ctx = index . 1 }}
+{{ $render =  last . }}
+{{ end }}
 
 {{ $slots := required "[ph.deployment_multi_slot.render]: A slots object is required" $ctx.Values.slots }}
 
@@ -11,7 +24,11 @@
 
 {{ $_ := set $ctx.Values.Slot "Name" "Default" }}
 
-{{ include "ph.deployment.render" (include $datablock $ctx  | fromYaml ) }}
+{{ if $override }}
+{{ include $render (include "ph.override" (list $datablock $ctx ) | fromYaml ) }}
+{{ else }}
+{{ include $render (include $datablock $ctx  | fromYaml ) }}
+{{ end }}
 
 {{/*Now iterate over the rest of the slots*/}}
 
@@ -22,8 +39,37 @@
 {{ $_ := set $ctx.Values.Slot "Name" $slot }}
 
 ---
-{{ include "ph.deployment.render" (include $datablock $ctx  | fromYaml ) }}
-
+{{ if $override }}
+{{ include $render (include "ph.override" (list $datablock $ctx ) | fromYaml ) }}
+{{ else }}
+{{ include $render (include $datablock $ctx  | fromYaml ) }}
+{{ end }}
 {{ end }}
 
+{{- end -}}
+
+{{/* SPECIFIC renders */}}
+
+{{- define "ph.deployment_multi_slot.render" -}}
+{{ include "ph.multi_slot.render" ( append . "ph.deployment.render") }}
+{{- end -}}
+
+{{- define "ph.deployment_multi_slot_override.render" -}}
+{{ include "ph.deployment_multi_slot.render" ( append . "override") }}
+{{- end -}}
+
+{{- define "ph.service_multi_slot.render" -}}
+{{ include "ph.multi_slot.render" ( append . "ph.service.render") }}
+{{- end -}}
+
+{{- define "ph.service_multi_slot_override.render" -}}
+{{ include "ph.service_multi_slot.render" ( append . "override") }}
+{{- end -}}
+
+{{- define "ph.ingress_multi_slot.render" -}}
+{{ include "ph.multi_slot.render" ( append . "ph.ingress.render") }}
+{{- end -}}
+
+{{- define "ph.ingress_multi_slot_override.render" -}}
+{{ include "ph.ingress_multi_slot.render" ( append . "override") }}
 {{- end -}}
