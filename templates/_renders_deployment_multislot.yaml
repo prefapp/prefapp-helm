@@ -22,7 +22,7 @@
 ---
 {{ $_ := set $ctx.Values "Slot" $ctx.Values }}
 
-{{ $_ := set $ctx.Values.Slot "Name" "Default" }}
+{{ $_ := set $ctx.Values.Slot "Name" "default" }}
 
 {{ if $override }}
 {{ include $render (include "ph.override" (list $datablock $ctx ) | fromYaml ) }}
