@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.3 [10-01-2022]
+
+- Lowercase for Default slot. [PR](https://github.com/prefapp/prefapp-helm/pull/159).
+
 ## 0.3.2 [06-01-2022]
 
 - Add Multi-slots support for services and ingress [Experimental] [PR](https://github.com/prefapp/prefapp-helm/pull/157).
