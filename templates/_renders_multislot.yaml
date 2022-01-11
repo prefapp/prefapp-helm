@@ -38,17 +38,35 @@
 
 {{ $_ := set $ctx.Values.Slot "Name" $slot }}
 
+{{/*************************************************************************/}}
+{{/*                                                                       */}}
+{{/* If a slot rendering defines {SKIP:true}, we should avoid rendering it */}}
+{{/*                                                                       */}}
+{{/*************************************************************************/}}
+
+{{ $yaml := (dict) }}
+
 ---
 {{ if $override }}
-{{ include $render (include "ph.override" (list $datablock $ctx ) | fromYaml ) }}
+{{ $yaml = include "ph.override" (list $datablock $ctx ) | fromYaml }}
 {{ else }}
-{{ include $render (include $datablock $ctx  | fromYaml ) }}
+{{ $yaml = include $datablock $ctx  | fromYaml }}
+{{ end }}
+
+{{ if (hasKey $yaml "SKIP") }}
+---
+{{ else }}
+{{ include $render $yaml }}
 {{ end }}
 {{ end }}
 
 {{- end -}}
 
-{{/* SPECIFIC renders */}}
+{{/******************************************************************/}}
+{{/*                                                                */}}
+{{/* SPECIFIC renders for every type (deployment, service, ingress) */}}
+{{/*                                                                */}}
+{{/******************************************************************/}}
 
 {{- define "ph.deployment_multi_slot.render" -}}
 {{ include "ph.multi_slot.render" ( append . "ph.deployment.render") }}
