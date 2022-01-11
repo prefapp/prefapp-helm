@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.4 [10-01-2022]
+
+- Add multi-slot SKIP. [PR](https://github.com/prefapp/prefapp-helm/pull/161).
+
 ## 0.3.3 [10-01-2022]
 
 - Lowercase for Default slot. [PR](https://github.com/prefapp/prefapp-helm/pull/159).
