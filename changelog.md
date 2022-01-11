@@ -2,7 +2,7 @@
 
 ## 0.3.4 [10-01-2022]
 
-- Add multi-slot SKIP. [PR](https://github.com/prefapp/prefapp-helm/pull/161).
+- Add multi-slot SKIP [Experimental]. [PR](https://github.com/prefapp/prefapp-helm/pull/161).
 
 ## 0.3.3 [10-01-2022]
 
