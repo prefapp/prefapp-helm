@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.5 [14-01-2022]
+
+- Add hostAliases to pods. [PR](https://github.com/prefapp/prefapp-helm/pull/161).
+
 ## 0.3.4 [10-01-2022]
 
 - Add multi-slot SKIP [Experimental]. [PR](https://github.com/prefapp/prefapp-helm/pull/161).
