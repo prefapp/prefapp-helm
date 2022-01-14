@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.6 [14-01-2022]
+
+- Fix a problem on hostAliases. [PR](https://github.com/prefapp/prefapp-helm/pull/165).
+
 ## 0.3.5 [14-01-2022]
 
 - Add hostAliases to pods. [PR](https://github.com/prefapp/prefapp-helm/pull/161).
