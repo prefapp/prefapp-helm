@@ -54,6 +54,10 @@ imagePullSecrets:
   - name: {{ $v }}
   {{ end }}
 
+{{ if .hostAliases }}
+  hostAliases: {{ .hostAliases | toYaml | nindent 2 }}
+{{- end -}}
+
 volumes: {{ include "ph.pod_volumes.render" . | nindent 2 }}
 
 {{ if hasKey . "automountServiceAccountToken" }}
