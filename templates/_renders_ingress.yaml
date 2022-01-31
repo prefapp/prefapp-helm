@@ -58,7 +58,7 @@ spec:
   {{ range $host := .hosts }}
   - host: {{ $host.host | toString | quote }}
     http:
-    {{ include "ph.ingress_rules.single.render" (merge $host (dict "version" .version)) | indent 6}}
+    {{ include "ph.ingress_rules.single.render" (merge $host (dict "version" $.version)) | indent 6}}
 
   {{ end }}
   {{ else }}

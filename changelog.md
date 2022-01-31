@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.7 [31-01-2022]
+
+- Fix a problem ingressVersion. [PR](https://github.com/prefapp/prefapp-helm/pull/168).
+- Issue [PR](https://github.com/prefapp/prefapp-helm/issues/167).
+
 ## 0.3.6 [14-01-2022]
 
 - Fix a problem on hostAliases. [PR](https://github.com/prefapp/prefapp-helm/pull/165).
