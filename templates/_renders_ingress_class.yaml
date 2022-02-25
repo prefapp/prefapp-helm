@@ -1,5 +1,6 @@
-{{- define "ph.ingress_class.render" -}}
 
+
+{{- define "ph.ingress_class.render" -}}
 
 apiVersion: networking.k8s.io/v1
 kind: IngressClass
@@ -14,7 +15,7 @@ spec:
     name: {{ .name }}
     {{- if hasKey . "namespace"  }}
     {{ $version := (default "1.20.0" .version) }}
-    {{- if semverCompare ">=1.22.0" $version -}}
+    {{- if semverCompare ">=1.23.0" $version -}}
     scope: Namespace
     namespace: {{ .namespace }}
     {{ end }}
