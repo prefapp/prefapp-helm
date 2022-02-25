@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.8 [25-02-2022]
+- Fix a problem on Scope for the ingress class. [PR](https://github.com/prefapp/prefapp-helm/pull/173).
+
 ## 0.3.7 [31-01-2022]
 
 - Fix a problem ingressVersion. [PR](https://github.com/prefapp/prefapp-helm/pull/168).
