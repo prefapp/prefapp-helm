@@ -28,6 +28,8 @@
 
 {{ include "ph.container_liveness_probe.render" . | indent 2}}
 
+{{ include "ph.container_startup_probe.render" . | indent 2}}
+
 {{- end -}}
 
 {{- define "ph.args.render" -}}
