@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.9 [08-04-2022]
+- Add startupProbes to containers. [PR](https://github.com/prefapp/prefapp-helm/pull/175).
+
 ## 0.3.8 [25-02-2022]
 - Fix a problem on Scope for the ingress class. [PR](https://github.com/prefapp/prefapp-helm/pull/173).
 
