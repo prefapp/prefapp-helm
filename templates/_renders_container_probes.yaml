@@ -21,7 +21,7 @@ readinessProbe: {{ .readinessProbe | toYaml | nindent 2 }}
 {{- define "ph.container_startup_probe.render" -}}
 
 {{- if hasKey . "startupProbe"  -}}
-startupProbe: {{ .readinessProbe | toYaml | nindent 2 }}
+startupProbe: {{ .startupProbe | toYaml | nindent 2 }}
 {{- end -}}
 
 {{- end -}}
