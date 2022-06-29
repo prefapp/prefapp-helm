@@ -2,7 +2,7 @@
 
 ## 0.4.0 [29-06-2022]
 
-- Add hpa render. 
+- Add hpa render. [PR](https://github.com/prefapp/prefapp-helm/pull/178).
 
 ## 0.3.9 [08-04-2022]
 - Add startupProbes to containers. [PR](https://github.com/prefapp/prefapp-helm/pull/175).
