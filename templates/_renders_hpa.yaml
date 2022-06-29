@@ -1,0 +1,35 @@
+{{- define "ph.hpa.artifact" -}}
+
+{{- end -}}
+
+
+{{- define "ph.hpa.render" -}}
+
+{{ $metrics :=  required "A metrics object is required for a hpa!" .metrics }}
+
+{{ $scaleTargetRef := required "An scaleTargetRef is required for a hpa!" .scaleTargetRef }}
+
+kind: HorizontalPodAutoscaler
+apiVersion: autoscaling/v2beta2
+
+metadata:
+  name: {{ required "A name is required for a hpa!" .name }}
+  labels: 
+  {{- range $k, $v := .labels }}
+    {{ $k }}: {{ $v | quote }}
+  {{- end }}
+  annotations: 
+  {{- range $k, $v := .annotations }}
+    {{ $k }}: {{ $v | quote }}
+  {{- end }}
+
+spec: 
+  scaleTargetRef: {{ $scaleTargetRef | toYaml | nindent 4 }}
+  minReplicas: {{ default 1 .minReplicas }}
+  maxReplicas: {{ required "A maxReplicas is required for a hpa!" .maxReplicas }}
+  metrics: {{ $metrics | toYaml | nindent 4 }}
+  {{ with .behavior }}
+  behavior: {{ . | toYaml | nindent 4 }}
+  {{ end }}
+
+{{- end -}}
