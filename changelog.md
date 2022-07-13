@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1 [29-06-2022]
+
+- Add port name on ingress render. [PR](https://github.com/prefapp/prefapp-helm/pull/180).
+
 ## 0.4.0 [29-06-2022]
 
 - Add hpa render. [PR](https://github.com/prefapp/prefapp-helm/pull/178).
