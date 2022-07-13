@@ -92,7 +92,12 @@ paths:
     service:
       name: {{ $rule.service }}
       port:
-        number: {{ $rule.port }}
+        {{ with $rule.port }}
+        number: {{ . }}
+        {{ end }}
+        {{ with $rule.port_name }}
+        name: {{ . }}
+        {{ end }}
 {{ end }}
 
 {{- end -}}
