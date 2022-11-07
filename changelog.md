@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.2 [07-11-2022]
+
+- Add clusterIP on service render. [PR](https://github.com/prefapp/prefapp-helm/pull/184).
+
 ## 0.4.1 [29-06-2022]
 
 - Add port name on ingress render. [PR](https://github.com/prefapp/prefapp-helm/pull/180).
