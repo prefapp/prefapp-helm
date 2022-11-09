@@ -1,0 +1,16 @@
+on:
+  push:
+    branches:
+      - master
+name: Run Release Please
+jobs:
+  release-please:
+    name: Release Please Manifest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          command: manifest
+          token: ${{ secrets.GITHUB_TOKEN }}
+          default-branch: master
