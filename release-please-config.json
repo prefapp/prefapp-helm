@@ -1,0 +1,12 @@
+{
+ "bootstrap-sha": "fb58a095344d2da74948d1b8b7cba28a17174035",
+
+ "release-type": "helm",
+
+ "packages": {
+
+    ".": {}
+
+  }
+
+}
