@@ -1,0 +1,86 @@
+on:
+  push:
+    branches:
+      - master
+name: Run Release Please
+jobs:
+  release-please:
+    name: Release Please Manifest
+    runs-on: ubuntu-latest
+    outputs:
+      paths_released: ${{ steps.release.outputs.paths_released }}
+      releases_info: ${{ toJSON(steps.release.outputs) }}
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          command: manifest
+          token: ${{ secrets.GITHUB_TOKEN }}
+          default-branch: master
+
+      - run: echo $JSON
+        name: Release Please Output Info
+        env:
+          JSON: ${{ toJSON(steps.release.outputs) }}
+
+  packages-calculate:
+    if: needs.release-please.outputs.paths_released != '[]'
+    name: Packages Calculate
+    needs:
+      - release-please
+    runs-on: ubuntu-latest
+    outputs:
+      result: ${{steps.interrogate.outputs.result}}
+    steps:
+
+      - uses: actions/checkout@v3
+
+      - id: interrogate
+        uses: actions/github-script@v4
+        env:
+          PATHS_RELEASED: ${{ needs.release-please.outputs.paths_released }}
+          RELEASES_INFO: ${{ needs.release-please.outputs.releases_info }}
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+
+            const { PATHS_RELEASED, RELEASES_INFO } = process.env
+
+            const releases = JSON.parse(PATHS_RELEASED)
+
+            const releasesInfo = JSON.parse(RELEASES_INFO)
+
+            const result = []
+
+            for(const release of releases){
+
+               result.push(
+                {
+                  name: release.split('/')[1],
+                  version: releasesInfo[`${release}--version`]
+                }
+               )
+
+            }
+
+            return result
+
+  packages-publish:
+    needs:
+      - packages-calculate
+    name: Charts Packages Publish
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package: ${{fromJson(needs.packages-calculate.outputs.result)}}
+    steps:
+    - name: Workflow publish
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      run: |
+       curl \
+        -X POST \
+        -H "Accept: application/vnd.github+json" \
+        -H "Authorization: Bearer $GITHUB_TOKEN" \
+        https://api.github.com/repos/prefapp-helm/charts/actions/workflows/publish-chart.yaml/dispatches \
+        -d '{"ref":"master","inputs":{"package":"${{matrix.package.name}}","version":"v${{matrix.package.version}}"}}'

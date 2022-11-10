@@ -1,0 +1,9 @@
+{
+    "name": "prefapp-helm",
+    "version": "0.0.0",
+    "description": "A library chart for Helm",
+    "main": "index.js",
+    "scripts": {},
+    "author": "",
+    "license": "ISC"
+  }
