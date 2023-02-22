@@ -29,6 +29,9 @@ spec: {{ include "ph.pod.render" . | nindent 2}}
 {{ include "ph.init_containers.render" . }}
 
 containers: {{ include "ph.pod.containers.render" . | nindent 2}}
+{{ if .tolerations }}
+tolerations: {{ .tolerations toYaml | nindent 2 }}
+{{ end }}
 {{ if .serviceAccountName }}
 serviceAccountName: {{ .serviceAccountName }}
 {{ end }}
