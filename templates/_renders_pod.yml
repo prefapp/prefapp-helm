@@ -30,7 +30,7 @@ spec: {{ include "ph.pod.render" . | nindent 2}}
 
 containers: {{ include "ph.pod.containers.render" . | nindent 2}}
 {{ if .tolerations }}
-tolerations: {{ .tolerations toYaml | nindent 2 }}
+tolerations: {{ .tolerations | toYaml | nindent 2 }}
 {{ end }}
 {{ if .serviceAccountName }}
 serviceAccountName: {{ .serviceAccountName }}
