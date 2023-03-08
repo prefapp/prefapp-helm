@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/prefapp/prefapp-helm/compare/prefapp-helm-v0.5.0...prefapp-helm-v0.5.1) (2023-03-08)
+
+
+### Bug Fixes
+
+* pipeline ([c548572](https://github.com/prefapp/prefapp-helm/commit/c5485724bdaac808c2f317a3390e7fd7d7c3ec9c))
+
 ## [0.5.0](https://github.com/prefapp/prefapp-helm/compare/prefapp-helm-v0.4.1...prefapp-helm-v0.5.0) (2023-03-08)
 
 
