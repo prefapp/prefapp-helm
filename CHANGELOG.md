@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.3](https://github.com/prefapp/prefapp-helm/compare/prefapp-helm-v0.5.2...prefapp-helm-v0.5.3) (2023-03-08)
+
+
+### Bug Fixes
+
+* publish jonb ([4d0807a](https://github.com/prefapp/prefapp-helm/commit/4d0807a85739937ddee6509f2451d2185567904c))
+
 ## [0.5.2](https://github.com/prefapp/prefapp-helm/compare/prefapp-helm-v0.5.1...prefapp-helm-v0.5.2) (2023-03-08)
 
 
