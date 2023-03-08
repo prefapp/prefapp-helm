@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.2](https://github.com/prefapp/prefapp-helm/compare/prefapp-helm-v0.5.1...prefapp-helm-v0.5.2) (2023-03-08)
+
+
+### Bug Fixes
+
+* pipeline, remove strategy matrix ([e0c41dd](https://github.com/prefapp/prefapp-helm/commit/e0c41dd44021366d5a5f3cd0ee3cffa628c6bea5))
+
 ## [0.5.1](https://github.com/prefapp/prefapp-helm/compare/prefapp-helm-v0.5.0...prefapp-helm-v0.5.1) (2023-03-08)
 
 
