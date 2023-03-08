@@ -29,9 +29,6 @@ jobs:
       - release-please
     name: Charts Packages Publish
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        package: ${{fromJson(needs.packages-calculate.outputs.result)}}
     steps:
     - name: Workflow publish
       env:
