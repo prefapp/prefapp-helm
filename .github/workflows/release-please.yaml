@@ -38,5 +38,5 @@ jobs:
         -X POST \
         -H "Accept: application/vnd.github+json" \
         -H "Authorization: Bearer $GITHUB_TOKEN" \
-        https://api.github.com/repos/prefapp-helm/actions/workflows/publish-chart.yaml/dispatches \
-        -d '{"ref":"master","inputs":{"package":"prefapp-helm","version":"v${{needs.release-please.outputs.releases_info.version}}"}}'
+        https://api.github.com/repos/prefapp/prefapp-helm/actions/workflows/publish-chart.yaml/dispatches \
+        -d '{"ref":"master","inputs":{"package":"prefapp-helm","version":"v${{fromJSON(needs.release-please.outputs.releases_info).version}}"}}'
