@@ -1,7 +1,7 @@
 {
  "bootstrap-sha": "5d61c45f11f2418dbc618c3ff4eec420fc39b445",
 
- "release-type": "node",
+ "release-type": "helm",
 
  "packages": {
 
