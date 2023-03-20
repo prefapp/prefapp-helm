@@ -9,6 +9,9 @@ kind: Service
 spec:
   selector: {{ include "ph.service.selector.render" . | nindent 4}}
   type: {{ default "ClusterIP" .type }}
+  {{- if hasKey . "clusterIP" }}
+  clusterIP: {{ .clusterIP }}
+  {{- end }}
   {{- if hasKey . "loadBalancerSourceRanges" }}
   loadBalancerSourceRanges: {{ .loadBalancerSourceRanges | toYaml | nindent 4 }}
   {{- end }}
