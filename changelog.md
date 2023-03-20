@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.0 [20-03-2023]
+
+- Add ClusterIP render for service. [PR](https://github.com/prefapp/prefapp-helm/pull/202).
+
+## 0.5.0 [08-03-2023]
+
+- Add topologySpreadConstraints. [Issue](https://github.com/prefapp/prefapp-helm/issues/190) [PR](https://github.com/prefapp/prefapp-helm/pull/191).
+
 ## 0.4.1 [29-06-2022]
 
 - Add port name on ingress render. [PR](https://github.com/prefapp/prefapp-helm/pull/180).
