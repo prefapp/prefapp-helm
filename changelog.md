@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.5.1 [20-03-2023]
+## 0.6.0 [20-03-2023]
 
 - Add ClusterIP render for service. [PR](https://github.com/prefapp/prefapp-helm/pull/202).
 
