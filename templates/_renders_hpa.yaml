@@ -34,5 +34,9 @@ spec:
   minReplicas: {{ default 1 .minReplicas }}
   maxReplicas: {{ required "A maxReplicas is required for a hpa!" .maxReplicas }}
   metrics: {{ $metrics | toYaml | nindent 4 }}
+  {{ with .behavior }}
+  behavior: {{ . | toYaml | nindent 4 }}
+  {{ end }}
+
 
 {{- end -}}
