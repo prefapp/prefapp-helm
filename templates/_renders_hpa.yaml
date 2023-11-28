@@ -9,9 +9,15 @@
 
 {{ $scaleTargetRef := required "An scaleTargetRef is required for a hpa!" .scaleTargetRef }}
 
-kind: HorizontalPodAutoscaler
-apiVersion: autoscaling/v2beta2
+{{ $version := default "1.25.0" .version }}
 
+{{- if semverCompare ">=1.26.0" $version }}
+apiVersion: autoscaling/v2
+{{- else }}
+apiVersion: autoscaling/v2beta2
+{{- end }}
+
+kind: HorizontalPodAutoscaler
 metadata:
   name: {{ required "A name is required for a hpa!" .name }}
   labels: 
@@ -31,5 +37,6 @@ spec:
   {{ with .behavior }}
   behavior: {{ . | toYaml | nindent 4 }}
   {{ end }}
+
 
 {{- end -}}
