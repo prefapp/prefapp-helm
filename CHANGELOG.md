@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/prefapp/prefapp-helm/compare/prefapp-helm-v0.6.0...prefapp-helm-v0.7.0) (2023-11-28)
+
+
+### Features
+
+* add support for 1.26 autoscaler ([#205](https://github.com/prefapp/prefapp-helm/issues/205))  ([432d4de](https://github.com/prefapp/prefapp-helm/commit/432d4de0968cb1c9cd4a2d18cbd68c396bfbc842))
+
 ## [0.6.0](https://github.com/prefapp/prefapp-helm/compare/prefapp-helm-v0.5.0...prefapp-helm-v0.6.0) (2023-03-20)
 
 
