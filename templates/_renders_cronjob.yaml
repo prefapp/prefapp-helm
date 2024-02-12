@@ -23,7 +23,11 @@ spec:
   schedule: {{ required "A schedule is needed for a cronjob" .schedule }}
 
   suspend: {{ default false .suspend }}
-  
+ 
+  {{ if hasKey . "timeZone" }}
+  timeZone: {{ .timeZone }}
+  {{ end }}
+
   {{ if hasKey . "successfulJobsHistoryLimit" }}
   successfulJobsHistoryLimit: {{ .successfulJobsHistoryLimit }}
   {{ end }}
