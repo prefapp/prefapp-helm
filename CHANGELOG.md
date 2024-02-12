@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.8.0](https://github.com/prefapp/prefapp-helm/compare/prefapp-helm-v0.7.0...prefapp-helm-v0.8.0) (2024-02-12)
+
+
+### Features
+
+* add timezone for cronjobs ([172ef6e](https://github.com/prefapp/prefapp-helm/commit/172ef6e8cd52c3c8a3136ec8a828be6f05da32d6))
+* provision CODEOWNERS file ([d2b823a](https://github.com/prefapp/prefapp-helm/commit/d2b823a2bbb36339baacc1bc78442af772c0b968))
+* provision CODEOWNERS file ([3ed33d5](https://github.com/prefapp/prefapp-helm/commit/3ed33d54b13b153c3ab86d40c5f7fade28c02826))
+* provision CODEOWNERS file ([532cdec](https://github.com/prefapp/prefapp-helm/commit/532cdecb5272a1eb14dce118230d1f73b2fabbdf))
+
 ## [0.7.0](https://github.com/prefapp/prefapp-helm/compare/prefapp-helm-v0.6.0...prefapp-helm-v0.7.0) (2023-11-28)
 
 
