@@ -15,6 +15,9 @@ spec:
   {{- if hasKey . "loadBalancerSourceRanges" }}
   loadBalancerSourceRanges: {{ .loadBalancerSourceRanges | toYaml | nindent 4 }}
   {{- end }}
+  {{- if hasKey . "loadBalancerIP" }}
+  loadBalancerIP: {{ .loadBalancerIP }}
+  {{- end }}
   ports:
   {{ range $p := required $error .ports }}
     {{- if hasKey $p "range_service" }}
