@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.1](https://github.com/prefapp/prefapp-helm/compare/prefapp-helm-v0.8.0...prefapp-helm-v0.8.1) (2024-02-13)
+
+
+### Features
+
+* Add load balancer ip ([#213](https://github.com/prefapp/prefapp-helm/issues/213)) ([4eca270](https://github.com/prefapp/prefapp-helm/commit/4eca270273b90cd6bebec3d03ba87aeee13dc79e))
+
 ## [0.8.0](https://github.com/prefapp/prefapp-helm/compare/prefapp-helm-v0.7.0...prefapp-helm-v0.8.0) (2024-02-12)
 
 
