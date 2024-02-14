@@ -31,6 +31,9 @@ spec: {{ include "ph.pod.render" . | nindent 2}}
 topologySpreadConstraints: {{ .topologySpreadConstraints | toYaml | nindent 2}}
 {{ end }}
 containers: {{ include "ph.pod.containers.render" . | nindent 2}}
+{{ if .tolerations }}
+tolerations: {{ .tolerations | toYaml | nindent 2 }}
+{{ end }}
 {{ if .serviceAccountName }}
 serviceAccountName: {{ .serviceAccountName }}
 {{ end }}
