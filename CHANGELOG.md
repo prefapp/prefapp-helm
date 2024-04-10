@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.0](https://github.com/prefapp/prefapp-helm/compare/prefapp-helm-v0.8.1...prefapp-helm-v0.9.0) (2024-04-10)
+
+
+### Features
+
+* Add quote for ingress host ([#216](https://github.com/prefapp/prefapp-helm/issues/216)) ([81fdecd](https://github.com/prefapp/prefapp-helm/commit/81fdecd5491cceb448cbf0819a8d62f9959a4c00))
+
 ## [0.8.1](https://github.com/prefapp/prefapp-helm/compare/prefapp-helm-v0.8.0...prefapp-helm-v0.8.1) (2024-02-13)
 
 
