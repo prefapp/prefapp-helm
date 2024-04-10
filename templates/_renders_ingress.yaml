@@ -50,7 +50,7 @@ spec:
   {{- if hasKey . "rules" }}
 
   {{- else if hasKey . "host" }}
-  - host: {{ .host }}
+  - host: {{ .host | quote }}
     http:
     {{ include "ph.ingress_rules.single.render" . | indent 6}}
 
