@@ -17,9 +17,13 @@ apiVersion: apps/v1
 {{- define "ph.deployment.spec.render" -}}
 
 spec:
-  {{ if .replicas }}
+  
+  {{- if has (kindOf .replicas) (list "int" "int64" "float" "float64") }}
+  {{- if ge (int .replicas) 0 }}
   replicas: {{ .replicas }}
-  {{ end }}
+  {{- end }}
+  {{- end }}
+
   selector: 
     matchLabels: {{ include "ph.deployment.selector.render" . | nindent 6}}
   template: {{ include "ph.deployment.template.render" . | nindent 4 }}   

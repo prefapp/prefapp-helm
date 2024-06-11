@@ -10,9 +10,11 @@ spec:
   serviceName: {{ required "A .serviceName is required" .serviceName }}
   selector:
     matchLabels: {{ required "A .selector is required" .selector | toYaml | nindent 6 }}
-  {{ if .replicas }}
+  {{- if has (kindOf .replicas) (list "int" "int64" "float" "float64") }}
+  {{- if ge (int .replicas) 0 }}
   replicas: {{ .replicas }}
-  {{ end }}
+  {{- end }}
+  {{- end }}
   template:
     metadata:
       labels: {{ required "A .labels is required" .selector | toYaml | nindent 8 }}
