@@ -17,7 +17,7 @@ apiVersion: apps/v1
 {{- define "ph.deployment.spec.render" -}}
 
 spec:
-  {{ with .replicas }}
+  {{ if .replicas }}
   replicas: {{ .replicas }}
   {{ end }}
   selector: 
