@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.1](https://github.com/prefapp/prefapp-helm/compare/prefapp-helm-v0.9.0...prefapp-helm-v0.9.1) (2024-06-11)
+
+
+### Bug Fixes
+
+* Change replicas statement into deployment and statefulset templates r… ([#219](https://github.com/prefapp/prefapp-helm/issues/219)) ([849f24b](https://github.com/prefapp/prefapp-helm/commit/849f24b9a2cf4c93397b1f9009667a4a5c3bf4aa))
+
 ## [0.9.0](https://github.com/prefapp/prefapp-helm/compare/prefapp-helm-v0.8.1...prefapp-helm-v0.9.0) (2024-04-10)
 
 
