@@ -10,7 +10,7 @@ spec:
   serviceName: {{ required "A .serviceName is required" .serviceName }}
   selector:
     matchLabels: {{ required "A .selector is required" .selector | toYaml | nindent 6 }}
-  {{ with .replicas }}
+  {{ if .replicas }}
   replicas: {{ .replicas }}
   {{ end }}
   template:
