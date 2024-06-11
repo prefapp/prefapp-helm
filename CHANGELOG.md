@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.0](https://github.com/prefapp/prefapp-helm/compare/prefapp-helm-v0.9.1...prefapp-helm-v0.10.0) (2024-06-11)
+
+
+### Features
+
+* Update README.md ([#223](https://github.com/prefapp/prefapp-helm/issues/223)) ([5f0b10f](https://github.com/prefapp/prefapp-helm/commit/5f0b10ff0d17bce06e380c85a4d30f3c2ac452ad))
+
 ## [0.9.1](https://github.com/prefapp/prefapp-helm/compare/prefapp-helm-v0.9.0...prefapp-helm-v0.9.1) (2024-06-11)
 
 
