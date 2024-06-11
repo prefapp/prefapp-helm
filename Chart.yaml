@@ -2,4 +2,4 @@ apiVersion: v2
 name: prefapp-helm
 description: Prefapp's library chart for applications
 type: library
-version: 0.9.2
+version: 0.10.0
