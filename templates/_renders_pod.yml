@@ -80,7 +80,9 @@ terminationGracePeriodSeconds: {{ .terminationGracePeriodSeconds }}
 {{- define "ph.pod.containers.render" -}}
 {{- if hasKey . "containers_dict" -}}
   {{- range $k := ( keys .containers_dict | sortAlpha ) }}
-{{ include "ph.container.render" (get $.containers_dict $k) | nindent 2}}
+  {{ $container := get $.containers_dict $k }}
+  {{ $_ := set $container "name" (default $k $container.name) }}
+{{ include "ph.container.render" $container | nindent 2}}
   {{- end }}
 {{- else -}}
   {{- range $c := .containers }}
