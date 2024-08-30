@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.0](https://github.com/prefapp/prefapp-helm/compare/prefapp-helm-v0.10.0...prefapp-helm-v0.11.0) (2024-08-30)
+
+
+### Features
+
+* use key in containers_dict as container name ([#227](https://github.com/prefapp/prefapp-helm/issues/227)) ([9865ce3](https://github.com/prefapp/prefapp-helm/commit/9865ce32554edc85d59c03a0b881d771c6552a5f))
+
 ## [0.10.0](https://github.com/prefapp/prefapp-helm/compare/prefapp-helm-v0.9.1...prefapp-helm-v0.10.0) (2024-06-11)
 
 
