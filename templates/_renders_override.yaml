@@ -8,12 +8,14 @@
 {{ $a := include "ph.override" (list $super $ctx) | fromYaml }}
 {{ $c := mustMerge $a $b }}
 {{ include "ph.augmenters.final" $c }}
+{{ include "ph.augmenters.traits" (list $datablock $c $ctx ) }}
 {{$c | toYaml }}
 {{- else -}}
 {{ $a := include $datablock $ctx | fromYaml -}}
 {{ $b := include $super $ctx | fromYaml -}}
 {{ $c := mustMerge $a $b }}
 {{ include "ph.augmenters.final" $c }}
+{{ include "ph.augmenters.traits" (list $datablock $c $ctx ) }}
 {{$c | toYaml }}
 {{- end }}
 
@@ -49,4 +51,29 @@
 
 {{ end }}
 
+{{- end -}}
+
+{{- define "ph.augmenters.traits" -}}
+
+{{ $datablock := first . -}}
+{{ $obj := first (slice . 1) }}
+{{ $ctx := last . -}}
+
+{{ $traits := include "ph.augmenters.traits_get" $datablock }}
+{{ if ne $traits ""}}
+{{ range $trait := splitList "," $traits }}
+{{ $obj := mustMerge $obj (include $trait $ctx  | fromYaml ) }}
+{{ end }}
+{{ end }}
+
+{{- end -}}
+
+{{- define "ph.augmenters.traits_get" -}}
+{{ $datablock := . -}}
+{{- if regexMatch "#" $datablock -}}
+{{- $trs := regexReplaceAll ".+#" $datablock "" -}}
+{{ printf "%s" $trs }}
+{{- else -}}
+{{ print "" }}
+{{- end -}}
 {{- end -}}
