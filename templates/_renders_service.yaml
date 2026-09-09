@@ -9,6 +9,20 @@ kind: Service
 spec:
   selector: {{ include "ph.service.selector.render" . | nindent 4}}
   type: {{ default "ClusterIP" .type }}
+  {{- if hasKey . "externalTrafficPolicy" }}
+  {{- $externalTrafficPolicy := default "Cluster" .externalTrafficPolicy }}
+  {{- if not (has $externalTrafficPolicy (list "Cluster" "Local")) }}
+  {{- fail "externalTrafficPolicy must be Cluster or Local" }}
+  {{- end }}
+  externalTrafficPolicy: {{ $externalTrafficPolicy }}
+  {{- end }}
+  {{- if hasKey . "internalTrafficPolicy" }}
+  {{- $internalTrafficPolicy := default "Cluster" .internalTrafficPolicy }}
+  {{- if not (has $internalTrafficPolicy (list "Cluster" "Local")) }}
+  {{- fail "internalTrafficPolicy must be Cluster or Local" }}
+  {{- end }}
+  internalTrafficPolicy: {{ $internalTrafficPolicy }}
+  {{- end }}
   {{- if hasKey . "clusterIP" }}
   clusterIP: {{ .clusterIP }}
   {{- end }}
@@ -59,4 +73,3 @@ spec:
 {{ required $error .selector | toYaml }}
 
 {{- end }}
-
