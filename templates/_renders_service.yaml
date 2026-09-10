@@ -12,7 +12,7 @@ spec:
   {{- if hasKey . "externalTrafficPolicy" }}
   {{- $externalTrafficPolicy := default "Cluster" .externalTrafficPolicy }}
   {{- if not (has $externalTrafficPolicy (list "Cluster" "Local")) }}
-  {{- fail "externalTrafficPolicy must be Cluster or Local" }}
+  {{- fail (printf "[ph.service.render] externalTrafficPolicy for service %s must be Cluster or Local (got %v)" .name $externalTrafficPolicy) }}
   {{- end }}
   externalTrafficPolicy: {{ $externalTrafficPolicy }}
   {{- end }}
