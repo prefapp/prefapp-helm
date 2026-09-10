@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.0](https://github.com/prefapp/prefapp-helm/compare/prefapp-helm-v0.11.0...prefapp-helm-v0.12.0) (2026-09-10)
+
+
+### Features
+
+* Add in/ex-ternalTrafficPolicy on renders_service ([#230](https://github.com/prefapp/prefapp-helm/issues/230)) ([812fa54](https://github.com/prefapp/prefapp-helm/commit/812fa545d95f2f0afe1ace6890488871ebdf6e18))
+
 ## [0.11.0](https://github.com/prefapp/prefapp-helm/compare/prefapp-helm-v0.10.0...prefapp-helm-v0.11.0) (2024-08-30)
 
 
